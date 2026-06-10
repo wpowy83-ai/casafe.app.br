@@ -1111,6 +1111,7 @@
 
 
   </div>
+    <div class="add-testimonial-section">      <div class="add-test-title">Compartilhe sua experiência</div>      <div class="add-test-sub">Seu relato pode inspirar outra pessoa a transformar seu espaço.</div>      <div class="add-test-form">        <div class="add-field"><label>Nome *</label><input type="text" id="at_nome" placeholder="Seu nome"></div>        <div class="add-field"><label>Cidade</label><input type="text" id="at_cidade" placeholder="Ex: São Paulo, SP"></div>        <div class="add-field full"><label>Seu depoimento *</label><textarea id="at_texto" placeholder="Conte como a consultoria impactou sua vida e seu espaço..."></textarea></div>        <div class="add-field full">          <label>Vídeo (opcional)</label>          <div class="video-upload-area" onclick="document.getElementById('at_video').click()">            <div class="upload-icon">🎥</div>            <strong style="color:var(--gold)">Clique para selecionar um vídeo</strong>            <p>MP4, MOV ou AVI · até 100 MB</p>            <div id="at_video_name" style="display:none;margin-top:8px;font-size:0.8rem;color:var(--sage-light);"></div>          </div>          <input type="file" id="at_video" accept="video/*" style="display:none" onchange="showVideoName(this)">        </div>        <div class="add-field full">          <button class="btn-add-test" onclick="submitTestimonial()">Enviar depoimento →</button>          <div class="add-success" id="addSuccess">✅ Obrigado! Seu depoimento foi recebido e será publicado após revisão.</div>        </div>      </div>    </div>
 </section>
 
 <!-- QUEM SOMOS -->
@@ -1192,7 +1193,7 @@
         <div class="form-group"><label>E-mail</label><input type="email" placeholder="seu@email.com"></div>
         <div class="form-group"><label>Assunto</label><select><option>Selecione...</option><option>Diagnóstico residencial</option><option>Projeto corporativo</option><option>Dúvidas sobre geobiologia</option><option>Parceria profissional</option><option>Outro</option></select></div>
         <div class="form-group"><label>Mensagem</label><textarea placeholder="Conte brevemente sobre seu espaço e o que você está buscando..."></textarea></div>
-        <button class="form-submit open-modal">Prefiro agendar uma consulta →</button>
+        <button class="form-submit" onclick="enviarFormWhatsApp(event)">Enviar mensagem via WhatsApp →</button>
         <p style="font-size:0.75rem;color:var(--stone);margin-top:12px;text-align:center;font-weight:300;">Retornamos em até 24h. Sem compromisso.</p>
       </div>
     </div>
@@ -1217,6 +1218,15 @@
 </footer>
 
 
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <p>Usamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa <a href="#">Política de Privacidade</a>.</p>
+  <div class="cookie-actions">
+    <button class="btn-cookie-accept" id="cookieAccept">Aceitar</button>
+    <button class="btn-cookie-decline" id="cookieDecline">Só essenciais</button>
+  </div>
+</div>
+
 <!-- WHATSAPP -->
 <a href="https://wa.me/5512996762509" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Atendimento via WhatsApp" title="Fale com nossa assistente — atendimento inicial via WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1224,7 +1234,7 @@
 
 <button class="float-cta open-modal">🌿 Entre em Contato Já</button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ── SCROLL PROGRESS ──
 window.addEventListener('scroll', () => {
   const el = document.getElementById('scrollProgress');
@@ -1535,6 +1545,23 @@ document.querySelectorAll('.arch-card,.study-card,.benefit-card,.test-card,.coun
   el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
   observer.observe(el);
 });
+
+// ── WHATSAPP FORM SENDER ──
+function enviarFormWhatsApp(e) {
+  e.preventDefault();
+  const nome   = document.querySelector(".contact-form input[type=text]").value.trim();
+  const tel    = document.querySelector(".contact-form input[type=tel]").value.trim();
+  const email  = document.querySelector(".contact-form input[type=email]").value.trim();
+  const assunto= document.querySelector(".contact-form select").value;
+  const msg    = document.querySelector(".contact-form textarea").value.trim();
+  if (!nome) { alert("Por favor, informe seu nome."); return; }
+  const texto = "Olá, Ca.Sa.Fe! Meu nome é " + nome + "." +
+    (assunto ? " Assunto: " + assunto + "." : "") +
+    (msg ? " " + msg : "") +
+    (tel ? " WhatsApp: " + tel : "") +
+    (email ? " Email: " + email : "");
+  window.open("https://wa.me/5512996762509?text=" + encodeURIComponent(texto), "_blank");
+}
 
 // ── COOKIE BANNER ──
 (function() {
