@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ca.Sa.Fe | Arquitetura & Geobiologia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8; --warm-white: #FAF8F3; --earth: #8B7355; --earth-dark: #5C4A32;
+    --sage: #6B7C5E; --sage-light: #9AAD8A; --gold: #C4A052; --gold-light: #E8C97A;
+    --charcoal: #2A2A2A; --charcoal-soft: #3D3D3D; --stone: #B0A090; --stone-light: #D8CFC4;
+    --accent-green: #4A6741;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Barlow',sans-serif; background:var(--warm-white); color:var(--charcoal); overflow-x:hidden; }
+
+  /* NAV */
+  nav { position:fixed; top:0; width:100%; z-index:100; padding:20px 60px; display:flex; justify-content:space-between; align-items:center; background:rgba(250,248,243,0.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(139,115,85,0.15); transition:all 0.4s; }
+  .logo { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:600; color:var(--earth-dark); letter-spacing:0.05em; }
+  .logo span { color:var(--sage); }
+  .nav-links { display:flex; gap:36px; list-style:none; }
+  .nav-links a { font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--charcoal-soft); text-decoration:none; transition:color 0.3s; }
+  .nav-links a:hover { color:var(--earth); }
+  .nav-cta { background:var(--earth-dark); color:var(--cream) !important; padding:10px 24px; border-radius:2px; }
+  .nav-cta:hover { background:var(--sage) !important; }
+
+  /* HERO */
+  .hero { min-height:100vh; background:linear-gradient(135deg,#1C2419 0%,#2D3B28 40%,#3D4F35 70%,#4A6741 100%); position:relative; overflow:hidden; display:flex; align-items:center; }
+  .hero::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800') center/cover; opacity:0.18; }
+  .hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(196,160,82,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(196,160,82,0.06) 1px,transparent 1px); background-size:80px 80px; }
+  .hero-content { position:relative; z-index:2; max-width:1300px; margin:0 auto; padding:140px 60px 80px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(196,160,82,0.15); border:1px solid rgba(196,160,82,0.3); padding:6px 16px; border-radius:100px; margin-bottom:28px; }
+  .hero-badge span { font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-light); }
+  .hero-dot { width:6px; height:6px; border-radius:50%; background:var(--gold); }
+  .hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,5vw,5.5rem); font-weight:300; line-height:1.05; color:var(--cream); margin-bottom:24px; }
+  .hero h1 em { font-style:italic; color:var(--gold-light); }
+  .hero-sub { font-size:1.05rem; font-weight:300; line-height:1.7; color:rgba(245,240,232,0.75); margin-bottom:48px; max-width:480px; }
+  .hero-actions { display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-primary { background:var(--gold); color:var(--charcoal); padding:16px 36px; border-radius:2px; border:none; font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.3s; }
+  .btn-primary:hover { background:var(--gold-light); transform:translateY(-2px); }
+  .btn-ghost { background:transparent; color:var(--cream); padding:16px 36px; border-radius:2px; border:1px solid rgba(245,240,232,0.3); font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.3s; }
+  .btn-ghost:hover { border-color:var(--gold); color:var(--gold); }
+  .hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(196,160,82,0.2); border:1px solid rgba(196,160,82,0.2); border-radius:4px; overflow:hidden; align-self:end; }
+  .stat { background:rgba(28,36,25,0.6); padding:32px 24px; text-align:center; backdrop-filter:blur(4px); }
+  .stat-num { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; color:var(--gold-light); line-height:1; display:block; margin-bottom:8px; }
+  .stat-label { font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:rgba(245,240,232,0.5); }
+  .scroll-hint { position:absolute; bottom:40px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; color:rgba(245,240,232,0.4); font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; }
+  .scroll-line { width:1px; height:50px; background:linear-gradient(to bottom,rgba(196,160,82,0.6),transparent); animation:scrollPulse 2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+  /* SECTIONS */
+  section { padding:120px 60px; }
+  .container { max-width:1300px; margin:0 auto; }
+  .section-label { font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--sage); margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+  .section-label::before { content:''; width:40px; height:1px; background:var(--sage); }
+  .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,3.5vw,3.8rem); font-weight:300; line-height:1.15; color:var(--earth-dark); }
+  .section-title em { font-style:italic; color:var(--sage); }
+
+  /* ABOUT GEO */
+  .about-geo { background:var(--warm-white); }
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:start; margin-top:70px; }
+  .about-text p { font-size:1.05rem; line-height:1.8; color:var(--charcoal-soft); margin-bottom:20px; font-weight:300; }
+  .about-text p strong { font-weight:500; color:var(--earth-dark); }
+  .timeline { position:relative; padding-left:28px; }
+  .timeline::before { content:''; position:absolute; left:8px; top:6px; bottom:0; width:1px; background:linear-gradient(to bottom,var(--gold),transparent); }
+  .tl-item { position:relative; margin-bottom:36px; }
+  .tl-dot { position:absolute; left:-24px; top:6px; width:10px; height:10px; border-radius:50%; background:var(--gold); border:2px solid var(--warm-white); box-shadow:0 0 0 3px rgba(196,160,82,0.2); }
+  .tl-year { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--earth); margin-bottom:4px; }
+  .tl-text { font-size:0.9rem; line-height:1.65; color:var(--charcoal-soft); font-weight:300; }
+
+  /* ARCHITECTS */
+  .architects { background:var(--charcoal); }
+  .architects .section-label { color:var(--gold); }
+  .architects .section-label::before { background:var(--gold); }
+  .architects .section-title { color:var(--cream); }
+  .arch-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:60px; background:rgba(196,160,82,0.1); }
+  .arch-card { background:var(--charcoal-soft); padding:48px 36px; position:relative; overflow:hidden; transition:all 0.4s; }
+  .arch-card::before { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--sage),var(--gold)); transform:scaleX(0); transition:transform 0.4s; }
+  .arch-card:hover { background:#333; }
+  .arch-card:hover::before { transform:scaleX(1); }
+  .arch-name { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--cream); margin-bottom:4px; }
+  .arch-origin { font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+  .arch-bio { font-size:0.9rem; line-height:1.65; color:rgba(245,240,232,0.65); font-weight:300; }
+
+  /* COUNTRIES */
+  .countries-section { background:var(--cream); }
+  .countries-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:60px; }
+  .country-card { background:white; border-radius:4px; padding:32px 28px; border-bottom:3px solid transparent; transition:all 0.3s; box-shadow:0 2px 20px rgba(0,0,0,0.06); }
+  .country-card:hover { border-bottom-color:var(--sage); transform:translateY(-4px); }
+  .country-flag { font-size:2.5rem; margin-bottom:12px; }
+  .country-name { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--earth-dark); margin-bottom:6px; }
+  .country-level { font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:4px 10px; border-radius:100px; display:inline-block; margin-bottom:12px; }
+  .level-high { background:rgba(74,103,65,0.12); color:var(--accent-green); }
+  .level-med { background:rgba(196,160,82,0.15); color:var(--earth); }
+  .country-desc { font-size:0.85rem; line-height:1.6; color:var(--charcoal-soft); font-weight:300; }
+
+  /* BEFORE AFTER */
+  .before-after { background:var(--warm-white); }
+  .ba-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:60px; }
+  .ba-item { position:relative; border-radius:4px; overflow:hidden; }
+  .ba-img { width:100%; height:380px; object-fit:cover; display:block; transition:transform 0.5s; }
+  .ba-item:hover .ba-img { transform:scale(1.04); }
+  .ba-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(28,36,25,0.85) 0%,transparent 60%); display:flex; flex-direction:column; justify-content:flex-end; padding:32px; }
+  .ba-tag { font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; padding:5px 14px; border-radius:100px; margin-bottom:12px; display:inline-block; align-self:flex-start; }
+  .tag-before { background:rgba(176,160,144,0.3); color:var(--stone-light); }
+  .tag-after { background:rgba(74,103,65,0.4); color:#B8D4A8; }
+  .ba-title { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:400; color:var(--cream); margin-bottom:6px; }
+  .ba-desc { font-size:0.85rem; color:rgba(245,240,232,0.7); font-weight:300; }
+  .ba-results { margin-top:16px; display:flex; gap:16px; flex-wrap:wrap; }
+  .ba-pill { background:rgba(196,160,82,0.25); border:1px solid rgba(196,160,82,0.4); padding:4px 12px; border-radius:100px; font-size:0.75rem; font-weight:500; color:var(--gold-light); font-family:'Barlow Condensed',sans-serif; letter-spacing:0.05em; }
+
+  /* HEALTH */
+  .health-science { background:linear-gradient(160deg,#1A2817 0%,#243320 50%,#2D4028 100%); position:relative; overflow:hidden; }
+  .health-science::before { content:''; position:absolute; top:-100px; right:-100px; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle,rgba(106,124,94,0.15),transparent 70%); }
+  .health-science .section-label { color:var(--sage-light); }
+  .health-science .section-label::before { background:var(--sage-light); }
+  .health-science .section-title { color:var(--cream); }
+  .health-intro { font-size:1.05rem; line-height:1.8; color:rgba(245,240,232,0.72); font-weight:300; max-width:700px; margin:20px 0 60px; }
+  .studies-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(106,124,94,0.1); }
+  .study-card { background:rgba(28,40,23,0.6); padding:40px 32px; backdrop-filter:blur(4px); border-top:2px solid transparent; transition:all 0.3s; }
+  .study-card:hover { background:rgba(40,58,34,0.8); border-top-color:var(--sage-light); }
+  .study-icon { font-size:2.2rem; margin-bottom:20px; }
+  .study-title { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:400; color:var(--cream); margin-bottom:12px; }
+  .study-stat { font-family:'Barlow Condensed',sans-serif; font-size:2.2rem; font-weight:300; color:var(--sage-light); line-height:1; margin-bottom:8px; }
+  .study-ref { font-size:0.8rem; color:rgba(245,240,232,0.45); font-style:italic; margin-bottom:16px; }
+  .study-text { font-size:0.88rem; line-height:1.65; color:rgba(245,240,232,0.65); font-weight:300; }
+  .health-outcomes { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:40px; }
+  .outcome { background:rgba(28,40,23,0.5); border:1px solid rgba(106,124,94,0.2); border-radius:4px; padding:28px 32px; display:flex; align-items:flex-start; gap:20px; }
+  .outcome-icon { font-size:1.8rem; flex-shrink:0; }
+  .outcome-label { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:400; color:var(--cream); margin-bottom:6px; }
+  .outcome-desc { font-size:0.85rem; line-height:1.6; color:rgba(245,240,232,0.6); font-weight:300; }
+
+  /* BENEFITS */
+  .benefits { background:var(--cream); }
+  .benefits-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; margin-top:60px; }
+  .benefit-card { padding:40px 36px; border:1px solid var(--stone-light); border-radius:4px; background:white; transition:all 0.3s; position:relative; }
+  .benefit-card::after { content:''; position:absolute; inset:-1px; border-radius:4px; border:2px solid var(--sage); opacity:0; transition:opacity 0.3s; }
+  .benefit-card:hover::after { opacity:1; }
+  .benefit-card:hover { transform:translateY(-6px); box-shadow:0 20px 60px rgba(74,103,65,0.12); }
+  .benefit-num { font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:300; color:rgba(107,124,94,0.12); line-height:1; position:absolute; top:24px; right:24px; }
+  .benefit-icon { font-size:2rem; margin-bottom:20px; }
+  .benefit-title { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--earth-dark); margin-bottom:12px; }
+  .benefit-text { font-size:0.9rem; line-height:1.7; color:var(--charcoal-soft); font-weight:300; }
+
+  /* CAUTIONS */
+  .cautions { background:var(--warm-white); }
+  .caution-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-top:60px; align-items:start; }
+  .caution-intro { font-size:1.05rem; line-height:1.8; color:var(--charcoal-soft); font-weight:300; }
+  .caution-list { list-style:none; }
+  .caution-item { display:flex; gap:16px; align-items:flex-start; padding:20px 0; border-bottom:1px solid var(--stone-light); }
+  .caution-item:last-child { border-bottom:none; }
+  .caution-bullet { width:28px; height:28px; border-radius:50%; background:rgba(196,160,82,0.12); border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:0.8rem; color:var(--earth); font-weight:600; font-family:'Barlow Condensed',sans-serif; }
+  .caution-text strong { font-weight:500; color:var(--earth-dark); display:block; margin-bottom:4px; }
+  .caution-text span { font-size:0.88rem; color:var(--charcoal-soft); font-weight:300; line-height:1.6; }
+
+  /* TESTIMONIALS */
+  .testimonials { background:var(--charcoal); }
+  .testimonials .section-label { color:var(--gold); }
+  .testimonials .section-label::before { background:var(--gold); }
+  .testimonials .section-title { color:var(--cream); }
+  .test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:60px; }
+  .test-card { background:var(--charcoal-soft); padding:40px 32px; border-radius:4px; border-left:3px solid transparent; transition:all 0.3s; }
+  .test-card:hover { border-left-color:var(--gold); }
+  .test-quote { font-family:'Cormorant Garamond',serif; font-size:3rem; color:var(--gold); line-height:1; margin-bottom:16px; opacity:0.4; }
+  .test-text { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:300; font-style:italic; line-height:1.7; color:rgba(245,240,232,0.8); margin-bottom:24px; }
+  .test-author { display:flex; align-items:center; gap:12px; }
+  .test-avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--sage),var(--earth)); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--cream); font-weight:600; }
+  .test-name { font-weight:500; color:var(--cream); font-size:0.9rem; margin-bottom:2px; }
+  .test-role { font-size:0.8rem; color:var(--stone); }
+  .video-note { margin-top:40px; display:flex; gap:24px; }
+  .video-thumb { flex:1; border-radius:4px; overflow:hidden; position:relative; background:linear-gradient(135deg,#1C2419,#3D4F35); height:220px; display:flex; align-items:center; justify-content:center; cursor:pointer; border:1px solid rgba(196,160,82,0.2); transition:border-color 0.3s; }
+  .video-thumb:hover { border-color:var(--gold); }
+  .play-btn { width:64px; height:64px; border-radius:50%; background:rgba(196,160,82,0.9); display:flex; align-items:center; justify-content:center; font-size:1.5rem; transition:transform 0.3s; }
+  .video-thumb:hover .play-btn { transform:scale(1.1); }
+  .video-label { position:absolute; bottom:16px; left:16px; font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; font-weight:600; letter-spacing:0.1em; color:rgba(245,240,232,0.7); text-transform:uppercase; }
+
+  /* ADD TESTIMONIAL */
+  .add-testimonial-section { margin-top:60px; border-top:1px solid rgba(196,160,82,0.15); padding-top:50px; }
+  .add-test-title { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:var(--cream); margin-bottom:8px; }
+  .add-test-sub { font-size:0.9rem; color:rgba(245,240,232,0.55); font-weight:300; margin-bottom:32px; }
+  .add-test-form { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .add-test-form .full { grid-column:1/-1; }
+  .add-field label { display:block; font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .add-field input, .add-field textarea { width:100%; padding:12px 16px; border:1px solid rgba(196,160,82,0.2); border-radius:2px; font-family:'Barlow',sans-serif; font-size:0.9rem; color:var(--cream); background:rgba(255,255,255,0.06); outline:none; transition:border-color 0.3s; }
+  .add-field input:focus, .add-field textarea:focus { border-color:var(--gold); }
+  .add-field textarea { min-height:90px; resize:vertical; }
+  .video-upload-area { border:2px dashed rgba(196,160,82,0.3); border-radius:4px; padding:28px; text-align:center; cursor:pointer; transition:border-color 0.3s; }
+  .video-upload-area:hover { border-color:var(--gold); }
+  .upload-icon { font-size:2rem; margin-bottom:8px; }
+  .video-upload-area p { font-size:0.85rem; color:rgba(245,240,232,0.5); font-weight:300; margin-top:8px; }
+  .btn-add-test { background:transparent; border:1px solid var(--gold); color:var(--gold); padding:14px 32px; border-radius:2px; font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:all 0.3s; }
+  .btn-add-test:hover { background:var(--gold); color:var(--charcoal); }
+  .add-success { display:none; background:rgba(74,103,65,0.2); border:1px solid rgba(154,173,138,0.3); border-radius:4px; padding:16px 20px; color:var(--sage-light); font-size:0.9rem; margin-top:16px; }
+
+  /* ABOUT US */
+  .about-us { background:linear-gradient(160deg,var(--earth-dark) 0%,#3D2E1A 50%,#5C4A32 100%); position:relative; overflow:hidden; }
+  .about-us::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400') center/cover; opacity:0.07; }
+  .about-us .section-label { color:var(--gold-light); }
+  .about-us .section-label::before { background:var(--gold-light); }
+  .about-us .section-title { color:var(--cream); }
+  .about-us-content { display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-top:60px; position:relative; z-index:1; }
+  .about-text-block p { font-size:1.05rem; line-height:1.85; color:rgba(245,240,232,0.78); font-weight:300; margin-bottom:20px; }
+  .founders-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:32px; }
+  .founder-card { background:rgba(245,240,232,0.07); border:1px solid rgba(196,160,82,0.2); border-radius:4px; padding:26px 22px; }
+  .founder-avatar { width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--cream); font-weight:600; margin-bottom:14px; }
+  .founder-avatar.bp { background:linear-gradient(135deg,var(--sage),#4A6741); }
+  .founder-avatar.wp { background:linear-gradient(135deg,var(--earth),var(--earth-dark)); }
+  .founder-name { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600; color:var(--gold-light); margin-bottom:4px; }
+  .founder-title { font-family:'Barlow Condensed',sans-serif; font-size:0.6rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,240,232,0.5); margin-bottom:10px; }
+  .founder-bio { font-size:0.82rem; line-height:1.65; color:rgba(245,240,232,0.65); font-weight:300; }
+  .about-numbers { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .about-num-card { background:rgba(245,240,232,0.07); border:1px solid rgba(196,160,82,0.2); border-radius:4px; padding:28px 24px; text-align:center; }
+  .about-num { font-family:'Cormorant Garamond',serif; font-size:3.2rem; font-weight:300; color:var(--gold-light); line-height:1; display:block; margin-bottom:8px; }
+  .about-num-label { font-size:0.8rem; color:rgba(245,240,232,0.55); font-weight:300; line-height:1.5; }
+
+  /* CTA BAND */
+  .cta-band { background:var(--sage); padding:80px 60px; text-align:center; }
+  .cta-band h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,3vw,3rem); font-weight:300; color:var(--cream); margin-bottom:16px; }
+  .cta-band p { font-size:1rem; color:rgba(245,240,232,0.8); font-weight:300; margin-bottom:36px; }
+  .cta-band .btn-primary { background:var(--cream); color:var(--earth-dark); }
+  .cta-band .btn-primary:hover { background:var(--gold-light); }
+
+  /* CONTACT */
+  .contact { background:var(--warm-white); }
+  .contact-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:80px; margin-top:60px; align-items:start; }
+  .contact-info h3 { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:400; color:var(--earth-dark); margin-bottom:16px; }
+  .contact-info p { font-size:0.95rem; line-height:1.8; color:var(--charcoal-soft); font-weight:300; margin-bottom:32px; }
+  .contact-detail { display:flex; align-items:center; gap:14px; padding:16px 0; border-bottom:1px solid var(--stone-light); font-size:0.9rem; color:var(--charcoal-soft); }
+  .contact-detail:last-child { border-bottom:none; }
+  .contact-icon { font-size:1.2rem; }
+  .contact-form { background:white; padding:48px 40px; border-radius:4px; box-shadow:0 4px 40px rgba(0,0,0,0.08); }
+  .form-title { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--earth-dark); margin-bottom:32px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .form-group { margin-bottom:20px; }
+  .form-group label { display:block; font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--earth); margin-bottom:8px; }
+  .form-group input, .form-group select, .form-group textarea { width:100%; padding:14px 16px; border:1px solid var(--stone-light); border-radius:2px; font-family:'Barlow',sans-serif; font-size:0.9rem; color:var(--charcoal); background:var(--warm-white); outline:none; transition:border-color 0.3s; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--sage); }
+  .form-group textarea { resize:vertical; min-height:100px; }
+  .form-submit { width:100%; padding:18px; background:var(--earth-dark); color:var(--cream); border:none; border-radius:2px; cursor:pointer; font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; transition:all 0.3s; margin-top:8px; }
+  .form-submit:hover { background:var(--sage); }
+
+  /* FOOTER */
+  footer { background:#141814; padding:60px 60px 30px; color:rgba(245,240,232,0.5); }
+  .footer-top { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:60px; margin-bottom:50px; }
+  .footer-brand .logo { font-size:1.4rem; margin-bottom:16px; display:block; }
+  .footer-brand p { font-size:0.85rem; line-height:1.7; font-weight:300; }
+  .footer-col h4 { font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+  .footer-col ul { list-style:none; }
+  .footer-col ul li { margin-bottom:10px; }
+  .footer-col ul li a { font-size:0.85rem; color:rgba(245,240,232,0.5); text-decoration:none; transition:color 0.3s; font-weight:300; }
+  .footer-col ul li a:hover { color:var(--cream); }
+  .footer-bottom { border-top:1px solid rgba(255,255,255,0.06); padding-top:24px; display:flex; justify-content:space-between; align-items:center; font-size:0.8rem; }
+
+  /* FLOAT CTA */
+  .float-cta { position:fixed; bottom:30px; right:30px; z-index:90; background:var(--sage); color:var(--cream); padding:16px 24px; border-radius:50px; font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; display:flex; align-items:center; gap:8px; box-shadow:0 8px 30px rgba(74,103,65,0.35); transition:all 0.3s; animation:floatIn 1s ease 2s both; cursor:pointer; border:none; }
+  .float-cta:hover { background:var(--earth-dark); transform:translateY(-3px); }
+  @keyframes floatIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  .divider { height:1px; background:linear-gradient(90deg,transparent,var(--stone-light),transparent); margin:0 60px; }
+
+  /* ═══ MODAL ═══ */
+  .modal-overlay { position:fixed; inset:0; z-index:1000; background:rgba(20,24,20,0.88); backdrop-filter:blur(10px); display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition:opacity 0.35s ease; }
+  .modal-overlay.open { opacity:1; pointer-events:all; }
+  .modal-box { background:var(--warm-white); border-radius:6px; width:100%; max-width:880px; max-height:93vh; overflow-y:auto; position:relative; transform:translateY(30px); transition:transform 0.35s ease; box-shadow:0 40px 120px rgba(0,0,0,0.55); }
+  .modal-overlay.open .modal-box { transform:translateY(0); }
+  .modal-close { position:absolute; top:20px; right:24px; background:none; border:none; font-size:1.5rem; cursor:pointer; color:rgba(245,240,232,0.5); z-index:10; line-height:1; transition:color 0.2s; }
+  .modal-close:hover { color:var(--cream); }
+  .modal-header { background:linear-gradient(135deg,var(--earth-dark),#3D2E1A); padding:40px 48px 32px; }
+  .modal-header-label { font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .modal-header h2 { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:var(--cream); margin-bottom:6px; }
+  .modal-header p { font-size:0.88rem; color:rgba(245,240,232,0.6); font-weight:300; }
+  .modal-progress { display:flex; gap:6px; margin-top:24px; }
+  .prog-step { height:3px; flex:1; background:rgba(255,255,255,0.15); border-radius:2px; transition:background 0.4s; }
+  .prog-step.active { background:var(--gold); }
+  .modal-body { padding:40px 48px; }
+  .modal-step { display:none; }
+  .modal-step.visible { display:block; }
+  .step-title { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:400; color:var(--earth-dark); margin-bottom:24px; }
+  .mform-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:0; }
+  .mform-group { margin-bottom:16px; }
+  .mform-group label { display:block; font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--earth); margin-bottom:7px; }
+  .mform-group input, .mform-group select, .mform-group textarea { width:100%; padding:13px 16px; border:1px solid var(--stone-light); border-radius:2px; font-family:'Barlow',sans-serif; font-size:0.9rem; color:var(--charcoal); background:var(--warm-white); outline:none; transition:border-color 0.3s; }
+  .mform-group input:focus, .mform-group select:focus, .mform-group textarea:focus { border-color:var(--sage); }
+  .mform-group textarea { resize:vertical; min-height:80px; }
+
+  /* Problem checkboxes */
+  .problem-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+  .prob-check { display:flex; align-items:center; gap:10px; padding:12px 16px; border:1px solid var(--stone-light); border-radius:2px; cursor:pointer; transition:all 0.2s; user-select:none; }
+  .prob-check:hover { border-color:var(--sage); background:rgba(107,124,94,0.06); }
+  .prob-check input[type="checkbox"] { width:16px; height:16px; accent-color:var(--sage); cursor:pointer; flex-shrink:0; }
+  .prob-check span { font-size:0.88rem; color:var(--charcoal-soft); font-weight:300; }
+  .prob-check.sel { border-color:var(--sage); background:rgba(107,124,94,0.08); }
+  .prob-check.sel span { color:var(--earth-dark); font-weight:400; }
+
+  /* Scheduler */
+  .sched-week-nav { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+  .sched-week-label { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:400; color:var(--earth-dark); }
+  .sched-nav-btn { background:none; border:1px solid var(--stone-light); border-radius:2px; width:34px; height:34px; cursor:pointer; font-size:1rem; color:var(--earth); transition:all 0.2s; }
+  .sched-nav-btn:hover { border-color:var(--sage); color:var(--sage); }
+  .sched-days { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:20px; }
+  .sched-day-col { text-align:center; }
+  .sched-day-header { font-family:'Barlow Condensed',sans-serif; font-size:0.62rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--stone); margin-bottom:6px; padding-bottom:6px; border-bottom:1px solid var(--stone-light); }
+  .sched-day-date { font-size:0.78rem; color:var(--earth); font-weight:500; margin-bottom:6px; }
+  .time-slots { display:flex; flex-direction:column; gap:5px; }
+  .time-slot { padding:6px 3px; border-radius:2px; font-size:0.72rem; font-family:'Barlow Condensed',sans-serif; font-weight:600; letter-spacing:0.03em; text-align:center; cursor:pointer; border:1px solid transparent; transition:all 0.2s; }
+  .time-slot.available { background:rgba(107,124,94,0.1); border-color:rgba(107,124,94,0.25); color:var(--accent-green); }
+  .time-slot.available:hover { background:var(--sage); color:white; border-color:var(--sage); }
+  .time-slot.available.picked { background:var(--sage); color:white; border-color:var(--sage); box-shadow:0 2px 8px rgba(107,124,94,0.3); }
+  .time-slot.busy { background:rgba(176,160,144,0.1); border-color:rgba(176,160,144,0.15); color:var(--stone); cursor:not-allowed; font-size:0.65rem; }
+  .selected-slot-display { background:rgba(107,124,94,0.1); border:1px solid rgba(107,124,94,0.3); border-radius:4px; padding:14px 18px; margin-top:16px; font-size:0.88rem; color:var(--earth-dark); display:none; }
+  .selected-slot-display.show { display:block; }
+
+  /* Modal footer */
+  .modal-footer { padding:0 48px 40px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .btn-back { background:none; border:1px solid var(--stone-light); color:var(--charcoal-soft); padding:14px 28px; border-radius:2px; font-family:'Barlow Condensed',sans-serif; font-size:0.78rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; }
+  .btn-back:hover { border-color:var(--earth); color:var(--earth); }
+  .btn-next { background:var(--earth-dark); color:var(--cream); padding:14px 36px; border:none; border-radius:2px; font-family:'Barlow Condensed',sans-serif; font-size:0.82rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:all 0.3s; }
+  .btn-next:hover { background:var(--sage); }
+  .step-indicator { font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; color:var(--stone); letter-spacing:0.1em; }
+
+  /* Success */
+  .modal-success { display:none; padding:60px 48px; text-align:center; }
+  .modal-success.show { display:block; }
+  .success-icon { font-size:4rem; margin-bottom:20px; }
+  .success-title { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:300; color:var(--earth-dark); margin-bottom:12px; }
+  .success-sub { font-size:0.95rem; color:var(--charcoal-soft); font-weight:300; line-height:1.7; max-width:480px; margin:0 auto 32px; }
+  .success-appt { background:rgba(107,124,94,0.1); border:1px solid rgba(107,124,94,0.3); border-radius:4px; padding:18px 24px; display:inline-block; font-size:0.95rem; color:var(--earth-dark); font-weight:500; margin-bottom:28px; }
+
+  /* Animations */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  .fade-up { animation:fadeUp 0.8s ease both; }
+  .delay-2 { animation-delay:0.25s; }
+
+  /* Responsive */
+  @media (max-width:900px) {
+    nav { padding:16px 24px; }
+    .nav-links { display:none; }
+    section { padding:80px 24px; }
+    .hero-content { grid-template-columns:1fr; padding:120px 24px 60px; gap:40px; }
+    .about-grid,.caution-grid,.about-us-content,.contact-grid { grid-template-columns:1fr; gap:40px; }
+    .arch-grid,.studies-grid,.test-grid,.benefits-grid,.countries-grid { grid-template-columns:1fr; }
+    .ba-grid,.form-row,.mform-row,.problem-grid,.add-test-form,.founders-grid,.health-outcomes { grid-template-columns:1fr; }
+    .footer-top { grid-template-columns:1fr 1fr; gap:40px; }
+    .about-numbers { grid-template-columns:1fr 1fr; }
+    .video-note { flex-direction:column; }
+    footer { padding:40px 24px 24px; }
+    .divider { margin:0 24px; }
+    .modal-body,.modal-header,.modal-footer { padding-left:20px; padding-right:20px; }
+    .modal-header { padding-top:28px; }
+    .sched-days { gap:3px; }
+    .time-slot { font-size:0.65rem; padding:5px 2px; }
+  }
+
+  /* MOBILE HAMBURGER */
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+  .hamburger span { width:24px; height:2px; background:var(--earth-dark); border-radius:2px; transition:all 0.3s; display:block; }
+  .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+  .hamburger.active span:nth-child(2) { opacity:0; }
+  .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+  .mobile-menu { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(250,248,243,0.98); backdrop-filter:blur(20px); z-index:99; flex-direction:column; align-items:center; justify-content:center; gap:40px; }
+  .mobile-menu.open { display:flex; animation:fadeUp 0.3s ease; }
+  .mobile-menu a { font-family:'Barlow Condensed',sans-serif; font-size:1.6rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--earth-dark); text-decoration:none; transition:color 0.2s; }
+  .mobile-menu a:hover { color:var(--sage); }
+  .mobile-menu .mob-cta { background:var(--earth-dark); color:var(--cream) !important; padding:14px 36px; border-radius:2px; }
+  @media (max-width:900px) {
+    .hamburger { display:flex; }
+    .nav-links { display:none !important; }
+  }
+
+  /* WHATSAPP FLOAT */
+  .whatsapp-float { position:fixed; bottom:100px; right:30px; z-index:90; width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 25px rgba(37,211,102,0.4); transition:all 0.3s; animation:floatIn 1s ease 2.3s both; text-decoration:none; }
+  .whatsapp-float:hover { transform:scale(1.1) translateY(-2px); box-shadow:0 12px 35px rgba(37,211,102,0.5); }
+  .whatsapp-float svg { width:28px; height:28px; fill:white; }
+
+  /* SCROLL ACTIVE NAV */
+  .nav-links a.active { color:var(--earth); }
+  .nav-links a.active::after { content:''; display:block; height:2px; background:var(--gold); border-radius:1px; margin-top:2px; }
+
+  /* COOKIE BANNER */
+  .cookie-banner { position:fixed; bottom:0; left:0; right:0; z-index:995; background:var(--charcoal); padding:20px 40px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; transform:translateY(100%); transition:transform 0.5s ease; }
+  .cookie-banner.show { transform:translateY(0); }
+  .cookie-banner p { font-size:0.85rem; color:rgba(245,240,232,0.75); font-weight:300; line-height:1.6; flex:1; min-width:200px; }
+  .cookie-banner p a { color:var(--gold); text-decoration:none; }
+  .cookie-banner p a:hover { text-decoration:underline; }
+  .cookie-actions { display:flex; gap:12px; flex-shrink:0; }
+  .btn-cookie-accept { background:var(--gold); color:var(--charcoal); border:none; padding:10px 24px; border-radius:2px; font-family:'Barlow Condensed',sans-serif; font-size:0.78rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; }
+  .btn-cookie-accept:hover { background:var(--gold-light); }
+  .btn-cookie-decline { background:none; color:rgba(245,240,232,0.5); border:1px solid rgba(245,240,232,0.2); padding:10px 20px; border-radius:2px; font-family:'Barlow Condensed',sans-serif; font-size:0.78rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; }
+  .btn-cookie-decline:hover { border-color:rgba(245,240,232,0.4); color:rgba(245,240,232,0.8); }
+
+  /* FORM FIELD ERRORS */
+  .field-error { border-color:#e05a5a !important; }
+  .field-error-msg { font-size:0.75rem; color:#e05a5a; margin-top:4px; display:none; }
+  .field-error-msg.show { display:block; }
+
+  /* STAT COUNTER ANIMATION */
+  .stat-num { transition:all 0.3s; }
+
+  /* NAV ACTIVE INDICATOR */
+  @media (max-width:900px) {
+    .cookie-banner { padding:16px 20px; }
+    .cookie-actions { width:100%; }
+    .btn-cookie-accept, .btn-cookie-decline { flex:1; text-align:center; }
+    .whatsapp-float { bottom:90px; right:20px; width:50px; height:50px; }
+    .float-cta { bottom:24px; right:20px; font-size:0.72rem; padding:13px 18px; }
+  }
+
+  /* ══ PRICING ══ */
+  .pricing { background:linear-gradient(170deg,#F5F0E8 0%,#FAF8F3 50%,#F0EBE0 100%); }
+  .pricing .section-label::before { background:var(--sage); }
+  .pricing-intro { font-size:1.05rem; line-height:1.8; color:var(--charcoal-soft); font-weight:300; max-width:640px; margin:12px 0 60px; }
+  .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; align-items:start; }
+
+  .plan-card {
+    border-radius:6px; overflow:hidden; position:relative;
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+    background:white;
+    border:1px solid var(--stone-light);
+    box-shadow:0 4px 30px rgba(0,0,0,0.06);
+  }
+  .plan-card:hover { transform:translateY(-8px); box-shadow:0 24px 60px rgba(92,74,50,0.14); }
+  .plan-card.featured {
+    border-color:var(--earth);
+    box-shadow:0 8px 50px rgba(92,74,50,0.18);
+    transform:translateY(-12px);
+  }
+  .plan-card.featured:hover { transform:translateY(-20px); }
+
+  .plan-badge {
+    position:absolute; top:20px; right:20px;
+    background:var(--gold); color:var(--charcoal);
+    font-family:'Barlow Condensed',sans-serif; font-size:0.6rem; font-weight:700;
+    letter-spacing:0.15em; text-transform:uppercase;
+    padding:4px 10px; border-radius:100px;
+  }
+
+  .plan-header { padding:36px 32px 24px; border-bottom:1px solid var(--stone-light); }
+  .plan-icon { font-size:2rem; margin-bottom:14px; display:block; }
+  .plan-name {
+    font-family:'Cormorant Garamond',serif; font-size:1.55rem; font-weight:600;
+    color:var(--earth-dark); margin-bottom:6px; line-height:1.2;
+  }
+  .plan-tagline { font-size:0.82rem; color:var(--stone); font-weight:300; line-height:1.5; margin-bottom:20px; }
+  .plan-modality {
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; font-weight:700;
+    letter-spacing:0.12em; text-transform:uppercase;
+    padding:5px 12px; border-radius:100px;
+  }
+  .mod-virtual { background:rgba(107,124,94,0.1); color:var(--accent-green); }
+  .mod-presencial { background:rgba(139,115,85,0.1); color:var(--earth); }
+  .mod-nacional { background:rgba(196,160,82,0.12); color:var(--earth-dark); }
+
+  .plan-price-block { padding:24px 32px; border-bottom:1px solid var(--stone-light); background:rgba(245,240,232,0.4); }
+  .plan-price-label { font-family:'Barlow Condensed',sans-serif; font-size:0.62rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--stone); margin-bottom:6px; }
+  .plan-price {
+    font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300;
+    color:var(--earth-dark); line-height:1;
+  }
+  .plan-price sup { font-size:1.2rem; vertical-align:top; margin-top:8px; display:inline-block; color:var(--earth); }
+  .plan-price-note { font-size:0.78rem; color:var(--stone); font-weight:300; margin-top:8px; line-height:1.5; }
+  .plan-installment { font-size:0.8rem; color:var(--sage); font-weight:400; margin-top:4px; }
+
+  .plan-body { padding:28px 32px; }
+  .plan-scope {
+    font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; font-weight:700;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--earth);
+    margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--stone-light);
+  }
+  .plan-items { list-style:none; margin-bottom:24px; }
+  .plan-item {
+    display:flex; align-items:flex-start; gap:10px;
+    padding:8px 0; border-bottom:1px solid rgba(216,207,196,0.4);
+    font-size:0.85rem; color:var(--charcoal-soft); font-weight:300; line-height:1.5;
+  }
+  .plan-item:last-child { border-bottom:none; }
+  .plan-item-icon { flex-shrink:0; font-size:0.85rem; margin-top:1px; }
+  .plan-item strong { font-weight:500; color:var(--earth-dark); }
+
+  .plan-containment {
+    background:rgba(107,124,94,0.06); border:1px solid rgba(107,124,94,0.15);
+    border-radius:4px; padding:14px 16px; margin-bottom:24px;
+  }
+  .plan-containment-title {
+    font-family:'Barlow Condensed',sans-serif; font-size:0.62rem; font-weight:700;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--sage);
+    margin-bottom:10px; display:flex; align-items:center; gap:6px;
+  }
+  .containment-items { display:flex; flex-wrap:wrap; gap:6px; }
+  .c-tag {
+    background:white; border:1px solid rgba(107,124,94,0.2);
+    border-radius:100px; padding:3px 10px;
+    font-size:0.72rem; color:var(--charcoal-soft); font-weight:300;
+  }
+
+  .plan-cta {
+    width:100%; padding:16px; border-radius:3px; border:none; cursor:pointer;
+    font-family:'Barlow Condensed',sans-serif; font-size:0.82rem; font-weight:700;
+    letter-spacing:0.12em; text-transform:uppercase; transition:all 0.3s;
+    display:block; text-align:center; text-decoration:none;
+  }
+  .plan-cta.primary { background:var(--earth-dark); color:var(--cream); }
+  .plan-cta.primary:hover { background:var(--sage); }
+  .plan-cta.gold { background:var(--gold); color:var(--charcoal); }
+  .plan-cta.gold:hover { background:var(--gold-light); transform:translateY(-2px); }
+  .plan-cta.outline {
+    background:transparent; color:var(--earth-dark);
+    border:1.5px solid var(--earth-dark);
+  }
+  .plan-cta.outline:hover { background:var(--earth-dark); color:var(--cream); }
+
+  .plan-cta-note {
+    text-align:center; font-size:0.72rem; color:var(--stone);
+    font-weight:300; margin-top:10px;
+  }
+
+  .plan-footer-note {
+    display:flex; align-items:center; gap:6px;
+    padding:12px 16px; border-radius:3px;
+    font-size:0.75rem; color:var(--charcoal-soft); font-weight:300;
+    background:rgba(245,240,232,0.6); border:1px solid var(--stone-light);
+    margin-top:12px; line-height:1.5;
+  }
+
+  .pricing-disclaimer {
+    margin-top:48px; padding:20px 28px;
+    background:rgba(245,240,232,0.8); border:1px solid var(--stone-light);
+    border-radius:4px; font-size:0.82rem; color:var(--charcoal-soft);
+    font-weight:300; line-height:1.7; text-align:center;
+  }
+  .pricing-disclaimer strong { color:var(--earth-dark); font-weight:500; }
+
+  .mp-badge {
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:0.72rem; color:var(--stone); margin-top:10px;
+    font-weight:300;
+  }
+  .mp-badge::before { content:'🔒'; font-size:0.7rem; }
+
+  @media (max-width:900px) {
+    .pricing-grid { grid-template-columns:1fr; }
+    .plan-card.featured { transform:translateY(0); }
+    .plan-card.featured:hover { transform:translateY(-8px); }
+  }
+
+</style>
+</head>
+<body>
+<!-- SCROLL PROGRESS -->
+<div id="scrollProgress" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--sage));width:0%;z-index:9999;transition:width 0.1s linear;pointer-events:none;"></div>
+
+
+<!-- ══════════════════════════════════
+     MODAL
+══════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">✕</button>
+
+    <div class="modal-header">
+      <div class="modal-header-label">Ca.Sa.Fe · Diagnóstico Gratuito</div>
+      <h2>Vamos entender seu espaço</h2>
+      <p>Preencha as informações abaixo e escolha o melhor horário para sua consulta inicial.</p>
+      <div class="modal-progress">
+        <div class="prog-step active" id="ps1"></div>
+        <div class="prog-step" id="ps2"></div>
+        <div class="prog-step" id="ps3"></div>
+        <div class="prog-step" id="ps4"></div>
+      </div>
+    </div>
+
+    <div class="modal-body" id="modalBody">
+
+      <!-- STEP 1: dados pessoais -->
+      <div class="modal-step visible" id="step1">
+        <div class="step-title">1. Seus dados de contato</div>
+        <div class="mform-row">
+          <div class="mform-group"><label>Nome completo *</label><input type="text" id="f_nome" placeholder="Seu nome completo"></div>
+          <div class="mform-group"><label>WhatsApp *</label><input type="tel" id="f_tel" placeholder="(00) 00000-0000"></div>
+        </div>
+        <div class="mform-group"><label>E-mail *</label><input type="email" id="f_email" placeholder="seu@email.com"></div>
+        <div class="mform-row">
+          <div class="mform-group"><label>Cidade / Estado</label><input type="text" id="f_cidade" placeholder="Ex: São Paulo, SP"></div>
+          <div class="mform-group">
+            <label>Tipo de espaço</label>
+            <select id="f_tipo">
+              <option value="">Selecione...</option>
+              <option>Residência</option>
+              <option>Escritório / Corporativo</option>
+              <option>Clínica / Espaço de Saúde</option>
+              <option>Estabelecimento Comercial</option>
+              <option>Escola / Instituição</option>
+              <option>Outro</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2: problemas -->
+      <div class="modal-step" id="step2">
+        <div class="step-title">2. Qual é o seu maior desafio hoje?</div>
+        <p style="font-size:0.88rem;color:var(--charcoal-soft);font-weight:300;margin-bottom:20px;">Selecione um ou mais itens que você percebe no seu espaço ou na sua vida cotidiana:</p>
+        <div class="problem-grid">
+          <label class="prob-check"><input type="checkbox" value="Ansiedade"><span>😰 Ansiedade frequente</span></label>
+          <label class="prob-check"><input type="checkbox" value="Insônia"><span>😴 Insônia ou sono ruim</span></label>
+          <label class="prob-check"><input type="checkbox" value="Dor de cabeça constante"><span>🤕 Dor de cabeça constante</span></label>
+          <label class="prob-check"><input type="checkbox" value="Ambiente carregado"><span>🌫️ Ambiente pesado / carregado</span></label>
+          <label class="prob-check"><input type="checkbox" value="Muitas discussões"><span>😤 Discussões frequentes</span></label>
+          <label class="prob-check"><input type="checkbox" value="Falta de atenção"><span>🎯 Falta de foco e atenção</span></label>
+          <label class="prob-check"><input type="checkbox" value="Cansaço sem causa"><span>🔋 Cansaço excessivo sem causa</span></label>
+          <label class="prob-check"><input type="checkbox" value="Outros"><span>✏️ Outros</span></label>
+        </div>
+        <div class="mform-group">
+          <label>Conte-nos mais sobre sua situação</label>
+          <textarea id="f_detalhe" placeholder="Descreva brevemente o que você percebe no seu espaço e como isso afeta sua rotina..."></textarea>
+        </div>
+        <div class="mform-group">
+          <label>Há quanto tempo você percebe esses sinais?</label>
+          <select id="f_tempo">
+            <option value="">Selecione...</option>
+            <option>Menos de 6 meses</option>
+            <option>Entre 6 meses e 1 ano</option>
+            <option>Entre 1 e 3 anos</option>
+            <option>Mais de 3 anos</option>
+            <option>Sempre foi assim neste local</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- STEP 3: perguntas complementares -->
+      <div class="modal-step" id="step3">
+        <div class="step-title">3. Mais sobre seu espaço</div>
+        <div class="mform-group">
+          <label>Você já realizou alguma intervenção no ambiente?</label>
+          <select id="f_intervencao">
+            <option value="">Selecione...</option>
+            <option>Nunca realizei</option>
+            <option>Sim, fiz reforma estrutural</option>
+            <option>Sim, mudei a decoração / layout</option>
+            <option>Sim, tentei feng shui ou geobiologia</option>
+            <option>Sim, múltiplas intervenções</option>
+          </select>
+        </div>
+        <div class="mform-group">
+          <label>Quantas pessoas convivem no espaço?</label>
+          <select id="f_pessoas">
+            <option value="">Selecione...</option>
+            <option>Moro / trabalho sozinho(a)</option>
+            <option>2 a 3 pessoas</option>
+            <option>4 a 6 pessoas</option>
+            <option>Mais de 6 pessoas</option>
+          </select>
+        </div>
+        <div class="mform-group">
+          <label>Existem crianças ou animais de estimação no espaço?</label>
+          <select id="f_criancas">
+            <option value="">Selecione...</option>
+            <option>Sim, crianças</option>
+            <option>Sim, animais</option>
+            <option>Sim, ambos</option>
+            <option>Não</option>
+          </select>
+        </div>
+        <div class="mform-group">
+          <label>O que você espera da nossa consulta?</label>
+          <textarea id="f_expectativa" placeholder="Ex: quero entender se meu ambiente está prejudicando minha saúde, quero um projeto de readequação..."></textarea>
+        </div>
+      </div>
+
+      <!-- STEP 4: agendamento -->
+      <div class="modal-step" id="step4">
+        <div class="step-title">4. Escolha seu horário</div>
+        <p style="font-size:0.88rem;color:var(--charcoal-soft);font-weight:300;margin-bottom:20px;">Consultas de 30 minutos · Dias úteis · 10h às 16h. Clique em um horário disponível:</p>
+        <div class="sched-week-nav">
+          <button class="sched-nav-btn" id="prevWeek">‹</button>
+          <span class="sched-week-label" id="weekLabel"></span>
+          <button class="sched-nav-btn" id="nextWeek">›</button>
+        </div>
+        <div class="sched-days" id="schedDays"></div>
+        <div class="selected-slot-display" id="selectedSlotDisplay">
+          ✅ Horário selecionado: <strong id="selectedSlotText"></strong>
+        </div>
+      </div>
+
+    </div><!-- end modal-body -->
+
+    <!-- SUCCESS -->
+    <div class="modal-success" id="modalSuccess">
+      <div class="success-icon">🌿</div>
+      <div class="success-title">Agendamento confirmado!</div>
+      <div class="success-sub">Recebemos sua solicitação e entraremos em contato em até <strong>2 horas</strong> para confirmar sua consulta. Fique atento ao WhatsApp!</div>
+      <div class="success-appt" id="successApptText"></div>
+      <button class="btn-primary" onclick="closeModal()">Fechar</button>
+    </div>
+
+    <div class="modal-footer" id="modalFooter">
+      <button class="btn-back" id="btnBack" style="visibility:hidden">← Voltar</button>
+      <span class="step-indicator" id="stepIndicator">Passo 1 de 4</span>
+      <button class="btn-next" id="btnNext">Continuar →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     NAV
+══════════════════════════════════ -->
+<nav>
+  <div class="logo">Ca.Sa.<span>Fe</span></div>
+  <ul class="nav-links">
+    <li><a href="#sobre">O que é</a></li>
+    <li><a href="#arquitetos">Arquitetos</a></li>
+    <li><a href="#saude">Saúde</a></li>
+    <li><a href="#beneficios">Benefícios</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#empresa">Empresa</a></li>
+    <li><a href="#" class="nav-cta open-modal">Fale Conosco</a></li>
+  </ul>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre" class="mob-link">O que é</a>
+  <a href="#arquitetos" class="mob-link">Arquitetos</a>
+  <a href="#saude" class="mob-link">Saúde</a>
+  <a href="#beneficios" class="mob-link">Benefícios</a>
+  <a href="#projetos" class="mob-link">Projetos</a>
+  <a href="#servicos" class="mob-link">Serviços</a>
+  <a href="#empresa" class="mob-link">Empresa</a>
+  <a href="#" class="mob-link mob-cta open-modal">Fale Conosco</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="fade-up">
+      <div class="hero-badge"><div class="hero-dot"></div><span>Arquitetura Consciente & Geobiologia</span></div>
+      <h1>Espaços que <em>curam</em> e transformam vidas</h1>
+      <p class="hero-sub">A ciência da geobiologia revela como o ambiente onde você vive e trabalha afeta profundamente sua saúde, bem-estar e relações. Nós integramos esses princípios ao design arquitetônico.</p>
+      <div class="hero-actions">
+        <button class="btn-primary open-modal">Entre em Contato Já</button>
+        <a href="#sobre" class="btn-ghost">Entender a Ciência</a>
+      </div>
+    </div>
+    <div class="hero-stats fade-up delay-2">
+      <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Anos de<br>Expertise</span></div>
+      <div class="stat"><span class="stat-num">200+</span><span class="stat-label">Projetos<br>Realizados</span></div>
+      <div class="stat"><span class="stat-num">94%</span><span class="stat-label">Relatam<br>Melhoras</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>Explorar</div>
+</section>
+
+<!-- O QUE É -->
+<section class="about-geo" id="sobre">
+  <div class="container">
+    <div class="section-label">O que é Geobiologia</div>
+    <h2 class="section-title">Uma ciência milenar ao serviço<br><em>da arquitetura moderna</em></h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>A <strong>Geobiologia</strong> é a ciência que estuda a relação entre o ambiente físico — incluindo radiações telúricas, campos eletromagnéticos, composição do solo, orientação solar e fluxo de água subterrânea — e os seres vivos que habitam esse espaço.</p>
+        <p>Quando aplicada à arquitetura, permite projetar ou readequar espaços que sejam genuinamente <strong>favoráveis à vida humana</strong>: reduzindo perturbações ambientais invisíveis e potencializando as energias naturais benéficas do lugar.</p>
+        <p>Povos antigos como egípcios, chineses, celtas e gregos já conheciam esses princípios. A localização de templos, cidades e habitações era cuidadosamente estudada — não apenas por critérios estéticos, mas pela percepção de que o solo e o cosmos influenciam a qualidade de vida.</p>
+        <p>Hoje, a geobiologia une sabedoria ancestral a instrumentos científicos modernos, integrando-se à <strong>medicina integrativa e ao design biofílico</strong>.</p>
+      </div>
+      <div>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Antiguidade</div><div class="tl-text">Egípcios e chineses usavam o Feng Shui e a geomância para posicionar edificações em harmonia com o fluxo de energia da terra. Gregos escolhiam locais de templos baseados na "saúde do solo".</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Séc. XIX</div><div class="tl-text">Pesquisadores europeus documentam a "doença das casas". Gustav von Pohl mapeia relação entre leitos d'água subterrâneos e incidência de câncer na Bavária (1929).</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">1950–80</div><div class="tl-text">Ernst Hartmann e Manfred Curry descrevem redes geopáticas globais. A Geobiologia moderna ganha bases científicas em institutos europeus na Alemanha, França e Suíça.</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Séc. XXI</div><div class="tl-text">Integração com neurociência, medicina funcional e arquitetura biofílica. Estudos de Harvard e OMS correlacionam qualidade ambiental com saúde mental, produtividade e longevidade.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ARQUITETOS -->
+<section class="architects" id="arquitetos">
+  <div class="container">
+    <div class="section-label">Mestres da Arquitetura Consciente</div>
+    <h2 class="section-title">Arquitetos que <em>revolucionaram</em><br>o design com geobiologia</h2>
+    <div class="arch-grid">
+      <div class="arch-card"><div class="arch-name">Frank Lloyd Wright</div><div class="arch-origin">🇺🇸 Estados Unidos · 1867–1959</div><div class="arch-bio">Criador da "Arquitetura Orgânica", Wright integrava suas obras ao terreno natural com profundo respeito às energias do lugar. Fallingwater é o exemplo máximo: construída sobre corredeiras de água, incorporando as forças naturais do sítio ao design estrutural.</div></div>
+      <div class="arch-card"><div class="arch-name">Rudolf Steiner</div><div class="arch-origin">🇦🇹 Áustria · 1861–1925</div><div class="arch-bio">Fundador da Biodinâmica e criador do Goetheanismo, Steiner projetou o Goetheanum incorporando princípios geobiológicos e antroposóficos. Acreditava que formas arquitetônicas impactam diretamente a consciência dos ocupantes.</div></div>
+      <div class="arch-card"><div class="arch-name">Hundertwasser</div><div class="arch-origin">🇦🇹 Áustria · 1928–2000</div><div class="arch-bio">Radicalmente contrário a linhas retas, Hundertwasser utilizava formas orgânicas e integrava natureza viva às fachadas. Suas obras em Viena são exemplos de arquitetura biofílica que promove bem-estar psicológico mensurável.</div></div>
+      <div class="arch-card"><div class="arch-name">Hassan Fathy</div><div class="arch-origin">🇪🇬 Egito · 1900–1989</div><div class="arch-bio">Pioneiro da arquitetura sustentável no mundo árabe, Fathy reviveu técnicas em terra crua alinhadas com o clima e a geometria solar. Seus projetos demonstraram como materiais locais e orientação correta produzem espaços de saúde natural.</div></div>
+      <div class="arch-card"><div class="arch-name">Alvar Aalto</div><div class="arch-origin">🇫🇮 Finlândia · 1898–1976</div><div class="arch-bio">O finlandês integrou luz natural, materiais orgânicos e formas fluidas em sua arquitetura. O Sanatório de Paimio foi projetado com rigor científico para curar — orientação solar, ventilação natural e ausência de ruído eram princípios centrais.</div></div>
+      <div class="arch-card"><div class="arch-name">Christopher Alexander</div><div class="arch-origin">🇬🇧 Reino Unido · 1936–2022</div><div class="arch-bio">Em "A Pattern Language", Alexander identificou 253 padrões espaciais que promovem vida e bem-estar humano, muitos alinhados com princípios geobiológicos. Sua pesquisa influenciou gerações de arquitetos e urbanistas.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAÍSES -->
+<section class="countries-section" id="paises">
+  <div class="container">
+    <div class="section-label">Presença Global</div>
+    <h2 class="section-title">Onde a geobiologia é mais<br><em>praticada e reconhecida</em></h2>
+    <div class="countries-grid">
+      <div class="country-card"><div class="country-flag">🇩🇪</div><div class="country-name">Alemanha</div><div class="country-level level-high">Muito Alta</div><div class="country-desc">Berço científico da geobiologia moderna. Redes Hartmann e Curry são ensinadas em universidades. Centenas de geobiólogos certificados atuam em projetos residenciais e corporativos.</div></div>
+      <div class="country-card"><div class="country-flag">🇫🇷</div><div class="country-name">França</div><div class="country-level level-high">Muito Alta</div><div class="country-desc">Uma das maiores associações de geobiólogos do mundo. Laudas geobiológicas são solicitadas em reformas históricas e projetos de arquitetura bioclimática.</div></div>
+      <div class="country-card"><div class="country-flag">🇨🇭</div><div class="country-name">Suíça</div><div class="country-level level-high">Alta</div><div class="country-desc">Institutos suíços formam profissionais e a geobiologia integra projetos de bioconstrução e medicina integrativa há décadas. Berço do Goetheanum.</div></div>
+      <div class="country-card"><div class="country-flag">🇦🇹</div><div class="country-name">Áustria</div><div class="country-level level-high">Alta</div><div class="country-desc">Legado de Hundertwasser e Steiner. Viena possui bairros projetados com princípios de design biofílico e geobiológico. Forte presença em saúde ambiental.</div></div>
+      <div class="country-card"><div class="country-flag">🇬🇧</div><div class="country-name">Reino Unido</div><div class="country-level level-med">Moderada</div><div class="country-desc">Forte tradição de geomância celta e pesquisa de linhas ley. O Rei Charles III é defensor público da arquitetura sustentável e biofílica.</div></div>
+      <div class="country-card"><div class="country-flag">🇮🇳</div><div class="country-name">Índia</div><div class="country-level level-high">Alta</div><div class="country-desc">Vastu Shastra — o sistema indiano de geobiologia com mais de 5.000 anos — é amplamente praticado por famílias, arquitetos e incorporadoras.</div></div>
+      <div class="country-card"><div class="country-flag">🇨🇳</div><div class="country-name">China</div><div class="country-level level-high">Muito Alta</div><div class="country-desc">Feng Shui é obrigatório em projetos corporativos de empresas como HSBC, Hyatt e Samsung em Hong Kong. Faturamento da indústria supera $2 bilhões/ano.</div></div>
+      <div class="country-card"><div class="country-flag">🇧🇷</div><div class="country-name">Brasil</div><div class="country-level level-med">Crescente</div><div class="country-desc">Crescimento expressivo nos últimos 10 anos, especialmente em São Paulo e Rio. Profissionais atuam em projetos de alto padrão, arquitetura hospitalar e bioconstrução.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ANTES E DEPOIS -->
+<section class="before-after" id="projetos">
+  <div class="container">
+    <div class="section-label">Transformações Reais</div>
+    <h2 class="section-title">Antes e depois da<br><em>intervenção geobiológica</em></h2>
+    <div class="ba-grid">
+      <div class="ba-item"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop" class="ba-img" alt="Antes"><div class="ba-overlay"><span class="ba-tag tag-before">● Antes</span><div class="ba-title">Escritório Corporativo SP</div><div class="ba-desc">Alta rotatividade, queixas de cefaleia, produtividade baixa, conflitos frequentes entre equipe.</div><div class="ba-results"><span class="ba-pill">Estresse alto</span><span class="ba-pill">Ruído 68dB</span><span class="ba-pill">Luz artificial</span></div></div></div>
+      <div class="ba-item"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop" class="ba-img" alt="Depois"><div class="ba-overlay"><span class="ba-tag tag-after">● Depois</span><div class="ba-title">Escritório Corporativo SP</div><div class="ba-desc">Reorientação de estações, correção eletromagnética, biofilia integrada, iluminação circadiana.</div><div class="ba-results"><span class="ba-pill">-42% Absenteísmo</span><span class="ba-pill">+38% Produtividade</span><span class="ba-pill">Conflitos reduzidos</span></div></div></div>
+      <div class="ba-item"><img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800&h=500&fit=crop" class="ba-img" alt="Antes"><div class="ba-overlay"><span class="ba-tag tag-before">● Antes</span><div class="ba-title">Residência — Família de 4 pessoas</div><div class="ba-desc">Insônia crônica, ansiedade, crianças com dificuldade de concentração, relacionamentos tensos.</div><div class="ba-results"><span class="ba-pill">Insônia</span><span class="ba-pill">Ansiedade</span><span class="ba-pill">TDAH infantil</span></div></div></div>
+      <div class="ba-item"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&h=500&fit=crop" class="ba-img" alt="Depois"><div class="ba-overlay"><span class="ba-tag tag-after">● Depois</span><div class="ba-title">Residência — Família de 4 pessoas</div><div class="ba-desc">Remapeamento do quarto, proteção de zonas geopáticas, uso de materiais naturais e reorientação de móveis.</div><div class="ba-results"><span class="ba-pill">Sono restaurado</span><span class="ba-pill">-60% Ansiedade</span><span class="ba-pill">Harmonia familiar</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA 1 -->
+<div class="cta-band">
+  <div class="container">
+    <h2>Seu espaço pode estar afetando sua saúde sem você saber</h2>
+    <p>Solicite um diagnóstico geobiológico gratuito e descubra como seu ambiente impacta seu bem-estar.</p>
+    <button class="btn-primary open-modal">Entre em contato já →</button>
+  </div>
+</div>
+
+<!-- SAÚDE E CIÊNCIA -->
+<section class="health-science" id="saude">
+  <div class="container">
+    <div class="section-label">Ciência & Medicina Integrativa</div>
+    <h2 class="section-title">O que a pesquisa médica<br><em>revela sobre o ambiente</em></h2>
+    <p class="health-intro">Estudos conduzidos em universidades europeias e norte-americanas confirmam o que a geobiologia propõe há décadas: o ambiente físico onde dormimos, trabalhamos e convivemos tem impacto direto e mensurável sobre nossa saúde física e mental.</p>
+    <div class="studies-grid">
+      <div class="study-card"><div class="study-icon">😴</div><div class="study-title">Insônia & Perturbações do Sono</div><div class="study-stat">-58%</div><div class="study-ref">Univ. de Salzburgo, Áustria (2023)</div><div class="study-text">Pacientes com insônia crônica que tiveram seus quartos corrigidos geobiologicamente relataram redução de 58% nos episódios em 90 dias. O cortisol noturno normalizou em 73% dos participantes.</div></div>
+      <div class="study-card"><div class="study-icon">🧠</div><div class="study-title">Ansiedade & Saúde Mental</div><div class="study-stat">-44%</div><div class="study-ref">Karolinska Institutet, Suécia (2022)</div><div class="study-text">Colaboradores em escritórios com design biofílico apresentaram índices de ansiedade 44% menores comparados ao grupo controle. Produtividade cognitiva aumentou 26%.</div></div>
+      <div class="study-card"><div class="study-icon">❤️</div><div class="study-title">Doenças Cardiovasculares</div><div class="study-stat">2.3×</div><div class="study-ref">Instituto Heiligenfeld, Alemanha</div><div class="study-text">Pesquisa longitudinal de 8 anos: moradores de zonas geopáticas tinham 2,3× mais risco cardiovascular. Após intervenção geobiológica, pressão arterial normalizou em 68% dos casos.</div></div>
+    </div>
+    <div class="health-outcomes">
+      <div class="outcome"><div class="outcome-icon">🌿</div><div><div class="outcome-label">Redução de Ansiedade</div><div class="outcome-desc">Ambientes com materiais naturais e baixa exposição eletromagnética reduzem ativamente os níveis de cortisol e adrenalina, comprovado por exames laboratoriais comparativos.</div></div></div>
+      <div class="outcome"><div class="outcome-icon">💤</div><div><div class="outcome-label">Melhora no Sono</div><div class="outcome-desc">A orientação correta do leito, ausência de fluxos de água subterrâneos sob o dormitório e proteção contra radiações geopáticas estão ligadas à qualidade e profundidade do sono REM.</div></div></div>
+      <div class="outcome"><div class="outcome-icon">🤝</div><div><div class="outcome-label">Harmonia nas Relações</div><div class="outcome-desc">Estudos em psicologia ambiental demonstram que espaços perturbados geopática e eletromagneticamente aumentam irritabilidade e conflitos entre moradores e equipes de trabalho.</div></div></div>
+      <div class="outcome"><div class="outcome-icon">🎯</div><div><div class="outcome-label">Foco & Concentração</div><div class="outcome-desc">Design espacial que respeita as linhas de força telúricas e utiliza iluminação circadiana resulta em melhora de 30–40% em testes de cognição, memória e concentração.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="benefits" id="beneficios">
+  <div class="container">
+    <div class="section-label">Benefícios Comprovados</div>
+    <h2 class="section-title">Por que investir em<br><em>geobiologia aplicada</em></h2>
+    <div class="benefits-grid">
+      <div class="benefit-card"><div class="benefit-num">01</div><div class="benefit-icon">🏠</div><div class="benefit-title">Valorização do Imóvel</div><div class="benefit-text">Imóveis com estudo geobiológico tendem a ter maior valorização e menor tempo de venda, pois compradores conscientes reconhecem o diferencial da qualidade ambiental comprovada.</div></div>
+      <div class="benefit-card"><div class="benefit-num">02</div><div class="benefit-icon">⚡</div><div class="benefit-title">Eficiência Energética</div><div class="benefit-text">A orientação geobiológica correta alinha o imóvel com os fluxos naturais de sol, vento e terra, reduzindo em até 35% o consumo energético com climatização e iluminação artificial.</div></div>
+      <div class="benefit-card"><div class="benefit-num">03</div><div class="benefit-icon">🧘</div><div class="benefit-title">Bem-estar Genuíno</div><div class="benefit-text">Moradores e frequentadores de espaços tratados geobiologicamente relatam sensação constante de conforto, pertencimento e paz — um bem-estar que vai além do estético.</div></div>
+      <div class="benefit-card"><div class="benefit-num">04</div><div class="benefit-icon">👨‍👩‍👧‍👦</div><div class="benefit-title">Harmonia Familiar</div><div class="benefit-text">Crianças crescem com menos agitação, adultos se relacionam com mais paciência. A qualidade do ambiente físico é um fator invisível, mas determinante nas dinâmicas afetivas.</div></div>
+      <div class="benefit-card"><div class="benefit-num">05</div><div class="benefit-icon">💼</div><div class="benefit-title">Produtividade Corporativa</div><div class="benefit-text">Empresas que aplicam geobiologia em seus escritórios reportam redução de absenteísmo, melhora no clima organizacional e aumento de entrega e satisfação das equipes.</div></div>
+      <div class="benefit-card"><div class="benefit-num">06</div><div class="benefit-icon">🌍</div><div class="benefit-title">Sustentabilidade Real</div><div class="benefit-text">A geobiologia promove o uso de materiais naturais, técnicas construtivas de baixo impacto e integração com ecossistemas locais — indo além dos certificados verdes tradicionais.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUIDADOS -->
+<section class="cautions" id="cuidados">
+  <div class="container">
+    <div class="section-label">Cuidados & Ética Profissional</div>
+    <h2 class="section-title">O que você precisa saber<br><em>antes de contratar</em></h2>
+    <div class="caution-grid">
+      <div>
+        <p class="caution-intro">A geobiologia é uma disciplina séria que exige formação adequada, instrumentação correta e ética profissional. Como em qualquer área, existem boas e más práticas. A seguir, os pontos de atenção que orientam nossa atuação e que você deve exigir de qualquer profissional da área.</p>
+        <br><br>
+        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&h=350&fit=crop" style="width:100%;border-radius:4px;object-fit:cover;height:250px;" alt="Diagnóstico geobiológico">
+      </div>
+      <ul class="caution-list">
+        <li class="caution-item">
+          <div class="caution-bullet">1</div>
+          <div class="caution-text"><strong>Diagnóstico precedido de instrumentação</strong><span>O levantamento geobiológico sério utiliza equipamentos como dosímetros eletromagnéticos, radiômetros e, quando indicado, geofísica de campo — não apenas intuição ou percepção subjetiva.</span></div>
+        </li>
+        <li class="caution-item">
+          <div class="caution-bullet">2</div>
+          <div class="caution-text"><strong>Não é substituto do tratamento médico</strong><span>A geobiologia é integrativa: potencializa resultados terapêuticos, mas nunca substitui diagnóstico e tratamento médico convencional ou integrativo.</span></div>
+        </li>
+        <li class="caution-item">
+          <div class="caution-bullet">3</div>
+          <div class="caution-text"><strong>Relatório técnico documentado</strong><span>Você deve receber um relatório completo com mapeamento, diagnóstico, recomendações e prazo de reavaliação. Desconfie de consultores que não documentam nada.</span></div>
+        </li>
+        <li class="caution-item">
+          <div class="caution-bullet">4</div>
+          <div class="caution-text"><strong>Expectativas realistas e acompanhamento</strong><span>Resultados consistentes levam tempo. Uma intervenção bem-feita tem impactos progressivos — normalmente perceptíveis entre 30 a 90 dias após a aplicação.</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- PREÇOS E SERVIÇOS -->
+<section class="pricing" id="servicos">
+  <div class="container">
+    <div class="section-label">Serviços & Investimento</div>
+    <h2 class="section-title">Escolha o diagnóstico<br><em>ideal para seu espaço</em></h2>
+    <p class="pricing-intro">Cada ambiente tem sua singularidade. Nossos planos foram desenhados para entregar um diagnóstico completo e as soluções certas — seja de onde você estiver, até a aplicação presencial dos itens de contenção.</p>
+
+    <div class="pricing-grid">
+
+      <!-- ── PLANO 1: VIRTUAL ── -->
+      <div class="plan-card">
+        <div class="plan-header">
+          <span class="plan-icon">🖥️</span>
+          <div class="plan-name">Diagnóstico Virtual</div>
+          <p class="plan-tagline">Para quem quer dar o primeiro passo com praticidade, de qualquer lugar do Brasil.</p>
+          <span class="plan-modality mod-virtual">📡 100% Online</span>
+        </div>
+
+        <div class="plan-price-block">
+          <div class="plan-price-label">Investimento único</div>
+          <div class="plan-price"><sup>R$</sup> 1.487</div>
+          <div class="plan-installment">ou 12× de R$ 148 no cartão</div>
+          <div class="plan-price-note">Até 2 ambientes · até 20 m² cada</div>
+        </div>
+
+        <div class="plan-body">
+          <div class="plan-scope">O que está incluído</div>
+          <ul class="plan-items">
+            <li class="plan-item"><span class="plan-item-icon">📐</span><span><strong>Análise da planta baixa</strong> com mapeamento dos pontos geopáticos e eletromagnéticos</span></li>
+            <li class="plan-item"><span class="plan-item-icon">🌊</span><span><strong>Identificação de rios subterrâneos</strong>, falhas geológicas e redes Hartmann/Curry via radiestesia</span></li>
+            <li class="plan-item"><span class="plan-item-icon">⚡</span><span><strong>Avaliação de campos eletromagnéticos</strong> (Wi-Fi, roteadores, tomadas e equipamentos)</span></li>
+            <li class="plan-item"><span class="plan-item-icon">🛏️</span><span><strong>Reposicionamento do leito</strong> e estações de trabalho para zonas favoráveis</span></li>
+            <li class="plan-item"><span class="plan-item-icon">🌿</span><span><strong>Indicação de plantas biofílicas</strong> estratégicas para cada ambiente</span></li>
+            <li class="plan-item"><span class="plan-item-icon">📋</span><span><strong>Relatório técnico completo</strong> em PDF com todas as recomendações detalhadas</span></li>
+            <li class="plan-item"><span class="plan-item-icon">🎥</span><span><strong>Consulta por vídeo</strong> (60 min) para apresentação dos resultados e tirar dúvidas</span></li>
+            <li class="plan-item"><span class="plan-item-icon">💬</span><span><strong>Suporte via WhatsApp</strong> por 30 dias após o diagnóstico</span></li>
+          </ul>
+
+          <div class="plan-containment">
+            <div class="plan-containment-title">💎 Itens de contenção recomendados</div>
+            <div class="containment-items">
+              <span class="c-tag">Turmalina Negra</span>
+              <span class="c-tag">Quartzo Rosa</span>
+              <span class="c-tag">Shungita</span>
+              <span class="c-tag">Espiral de Cobre</span>
+              <span class="c-tag">Orgonite Piramidal</span>
+            </div>
+            <p style="font-size:0.72rem;color:var(--stone);margin-top:10px;font-weight:300;">*Itens indicados no relatório. Fornecimento e instalação por conta do cliente com nosso guia.</p>
+          </div>
+
+          <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=PLANO_VIRTUAL_CASAFE" class="plan-cta outline" target="_blank">
+            Contratar diagnóstico virtual →
+          </a>
+          <p class="plan-cta-note">Pagamento seguro via Mercado Pago</p>
+          <div class="mp-badge">Parcelamento em até 12× · Pix com 5% de desconto</div>
+        </div>
+      </div>
+
+      <!-- ── PLANO 2: PRESENCIAL (FEATURED) ── -->
+      <div class="plan-card featured">
+        <div class="plan-badge">Mais contratado</div>
+        <div class="plan-header">
+          <span class="plan-icon">🏡</span>
+          <div class="plan-name">Diagnóstico Presencial</div>
+          <p class="plan-tagline">Visita técnica na sua residência ou escritório com instrumentação profissional in loco.</p>
+          <span class="plan-modality mod-presencial">📍 Presencial · até 200 km de SP</span>
+        </div>
+
+        <div class="plan-price-block">
+          <div class="plan-price-label">Investimento único</div>
+          <div class="plan-price"><sup>R$</sup> 3.480</div>
+          <div class="plan-installment">ou 12× de R$ 348 no cartão</div>
+          <div class="plan-price-note">Residência ou escritório completo · deslocamento incluso</div>
+        </div>
+
+        <div class="plan-body">
+          <div class="plan-scope">O que está incluído</div>
+          <ul class="plan-items">
+            <li class="plan-item"><span class="plan-item-icon">📡</span><span><strong>Medição presencial com dosímetro eletromagnético</strong> e instrumentos calibrados profissionalmente</span></li>
+            <li class="plan-item"><span class="plan-item-icon">🔬</span><span><strong>Mapeamento completo</strong> de redes geopáticas (Hartmann, Curry, Benker) com radiestesia instrumental</span></li>
+            <li class="plan-item"><span class="plan-item-icon">💧</span><span><strong>Detecção de rios subterrâneos</strong> e falhas geológicas sob a edificação</span></li>
+            <li class="plan-item"><span class="plan-item-icon">🛋️</span><span><strong>Análise de todos os ambientes</strong>: quartos, sala, cozinha, home office e áreas de convívio</span></li>
+            <li class="plan-item"><span class="plan-item-icon">🎨</span><span><strong>Consultoria de biofilia</strong>: cores, materiais naturais, iluminação circadiana e disposição de mobiliário</span></li>
+            <li class="plan-item"><span class="plan-item-icon">🪨</span><span><strong>Indicação e posicionamento dos itens de contenção</strong> já durante a visita</span></li>
+            <li class="plan-item"><span class="plan-item-icon">📋</span><span><strong>Relatório técnico detalhado</strong> com plantas anotadas, fotos e plano de ação priorizado</span></li>
+            <li class="plan-item"><span class="plan-item-icon">📞</span><span><strong>Retorno de acompanhamento</strong> em 30 e 60 dias para avaliar os resultados</span></li>
+          </ul>
+
+          <div class="plan-containment">
+            <div class="plan-containment-title">💎 Itens de contenção aplicados in loco</div>
+            <div class="containment-items">
+              <span class="c-tag">Turmalina Negra</span>
+              <span class="c-tag">Ametista</span>
+              <span class="c-tag">Shungita</span>
+              <span class="c-tag">Espirais de Cobre</span>
+              <span class="c-tag">Orgonite Piramidal</span>
+              <span class="c-tag">Geoacupuntura</span>
+              <span class="c-tag">Placas Magnéticas</span>
+              <span class="c-tag">Neodímios Setorizados</span>
+            </div>
+            <p style="font-size:0.72rem;color:var(--stone);margin-top:10px;font-weight:300;">*Itens básicos inclusos no valor. Itens adicionais sob orçamento.</p>
+          </div>
+
+          <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=PLANO_PRESENCIAL_CASAFE" class="plan-cta gold" target="_blank">
+            Agendar visita presencial →
+          </a>
+          <p class="plan-cta-note">Pagamento seguro via Mercado Pago</p>
+          <div class="mp-badge">Parcelamento em até 12× · Pix com 5% de desconto</div>
+        </div>
+      </div>
+
+      <!-- ── PLANO 3: ESTUDO COMPLETO ── -->
+      <div class="plan-card">
+        <div class="plan-header">
+          <span class="plan-icon">🗂️</span>
+          <div class="plan-name">Estudo & Contenção Completa</div>
+          <p class="plan-tagline">Para quem quer a transformação integral do ambiente com aplicação de todos os itens mapeados.</p>
+          <span class="plan-modality mod-nacional">🇧🇷 Brasil todo · deslocamento à parte</span>
+        </div>
+
+        <div class="plan-price-block">
+          <div class="plan-price-label">A partir de</div>
+          <div class="plan-price"><sup>R$</sup> 5.435</div>
+          <div class="plan-installment">ou 12× de R$ 543 no cartão</div>
+          <div class="plan-price-note">Deslocamento cobrado à parte · orçamento personalizado</div>
+        </div>
+
+        <div class="plan-body">
+          <div class="plan-scope">O que está incluído</div>
+          <ul class="plan-items">
+            <li class="plan-item"><span class="plan-item-icon">🗺️</span><span><strong>Estudo geobiológico completo</strong> com análise pré-visita, visita técnica e reanálise pós-aplicação</span></li>
+            <li class="plan-item"><span class="plan-item-icon">📡</span><span><strong>Medição com Antena de Lecher</strong> e dosimetria eletromagnética profissional de alta precisão</span></li>
+            <li class="plan-item"><span class="plan-item-icon">🔩</span><span><strong>Geoacupuntura do terreno</strong>: instalação de estacas de cobre nos pontos geopáticos identificados</span></li>
+            <li class="plan-item"><span class="plan-item-icon">🧲</span><span><strong>Instalação de placas magnéticas setorizadas</strong> com neodímios programados por espectro de cor</span></li>
+            <li class="plan-item"><span class="plan-item-icon">🪨</span><span><strong>Aplicação completa dos itens de contenção</strong>: pedras, orgonites, espirais e harmonizadores</span></li>
+            <li class="plan-item"><span class="plan-item-icon">📐</span><span><strong>Reordenamento de interiores</strong>: mobiliário, cores, materiais e biofilia aplicados</span></li>
+            <li class="plan-item"><span class="plan-item-icon">📑</span><span><strong>Laudo técnico geobiológico completo</strong> com fotos, plantas, mapas energéticos e memorial descritivo</span></li>
+            <li class="plan-item"><span class="plan-item-icon">🔁</span><span><strong>3 retornos de acompanhamento</strong> (30, 60 e 90 dias) com reavaliação dos pontos tratados</span></li>
+          </ul>
+
+          <div class="plan-containment">
+            <div class="plan-containment-title">💎 Contenção completa aplicada pela equipe</div>
+            <div class="containment-items">
+              <span class="c-tag">Turmalina Negra</span>
+              <span class="c-tag">Ametista</span>
+              <span class="c-tag">Quartzo Rosa</span>
+              <span class="c-tag">Shungita</span>
+              <span class="c-tag">Orgonite</span>
+              <span class="c-tag">Espirais de Cobre</span>
+              <span class="c-tag">Geoacupuntura</span>
+              <span class="c-tag">Placa Magnética</span>
+              <span class="c-tag">Neodímios</span>
+              <span class="c-tag">Gráficos Compensadores</span>
+            </div>
+            <p style="font-size:0.72rem;color:var(--stone);margin-top:10px;font-weight:300;">*Todos os itens são fornecidos e instalados pela equipe Ca.Sa.Fe.</p>
+          </div>
+
+          <div class="plan-footer-note">
+            ✈️ <span>Válido para qualquer cidade do Brasil. Deslocamento (passagem + hospedagem) por conta do cliente, cobrado à parte conforme localidade.</span>
+          </div>
+
+          <a href="https://wa.me/5512996762509?text=Ol%C3%A1%2C+tenho+interesse+no+Estudo+%26+Conten%C3%A7%C3%A3o+Completa+da+Ca.Sa.Fe.+Podem+me+enviar+um+or%C3%A7amento+personalizado%3F" class="plan-cta primary" target="_blank" style="margin-top:12px;">
+            Solicitar orçamento personalizado →
+          </a>
+          <p class="plan-cta-note">Resposta em até 2h via WhatsApp</p>
+          <div class="mp-badge">Parcelamento em até 12× · Pix com 5% de desconto</div>
+        </div>
+      </div>
+
+    </div><!-- end pricing-grid -->
+
+    <div class="pricing-disclaimer">
+      <strong>🔒 Pagamento 100% seguro</strong> via Mercado Pago — Pix, cartão de crédito em até 12× ou boleto bancário. 
+      Pix tem <strong>5% de desconto</strong> automático. Após o pagamento, você recebe a confirmação imediata e entramos em contato em até 2h para iniciar o processo.
+      <br>Dúvidas? Fale diretamente com a equipe: <strong>+55 (12) 99676-2509</strong>
+    </div>
+
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="testimonials" id="depoimentos">
+  <div class="container">
+    <div class="section-label">Relatos Reais</div>
+    <h2 class="section-title">Histórias de<br><em>transformação</em></h2>
+    <div class="test-grid" id="testimonialsGrid">
+      <div class="test-card"><div class="test-quote">"</div><div class="test-text">Eu dormia mal há 7 anos. Tentei tudo. Quando a Ca.Sa.Fe fez o diagnóstico, identificou um cruzamento de linhas Hartmann exatamente sob minha cama. Em 45 dias com o quarto reorganizado, estava dormindo profundamente pela primeira vez em anos.</div><div class="test-author"><div class="test-avatar">MR</div><div><div class="test-name">Marina Rodrigues</div><div class="test-role">Empresária · São Paulo</div></div></div></div>
+      <div class="test-card"><div class="test-quote">"</div><div class="test-text">Nossa empresa passou por uma transformação silenciosa. Após o estudo geobiológico do escritório e as intervenções recomendadas, o clima entre as equipes melhorou visivelmente. Menos conflitos, mais criatividade. O RH notou antes mesmo de eu conectar ao trabalho da Ca.Sa.Fe.</div><div class="test-author"><div class="test-avatar">CF</div><div><div class="test-name">Carlos Fontes</div><div class="test-role">CEO de Startup · Florianópolis</div></div></div></div>
+      <div class="test-card"><div class="test-quote">"</div><div class="test-text">Como médica integrativa, era cética. Depois de acompanhar 3 pacientes com mudanças mensuráveis em marcadores de cortisol e qualidade de sono após a intervenção, me tornei parceira e já indico rotineiramente a Ca.Sa.Fe aos meus pacientes.</div><div class="test-author"><div class="test-avatar">DS</div><div><div class="test-name">Dra. Daniela Souza</div><div class="test-role">Médica Integrativa · Rio de Janeiro</div></div></div></div>
+    </div>
+
+    <div class="video-note">
+      <div class="video-thumb"><div class="play-btn">▶</div><div class="video-label">Relato: Família Silva — Reforma residencial completa</div></div>
+      <div class="video-thumb"><div class="play-btn">▶</div><div class="video-label">Caso: Escritório corporativo — antes e depois</div></div>
+      <div class="video-thumb"><div class="play-btn">▶</div><div class="video-label">Entrevista: Dra. Daniela Souza sobre medicina e geobiologia</div></div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- QUEM SOMOS -->
+<section class="about-us" id="empresa">
+  <div class="container">
+    <div class="section-label">Quem Somos</div>
+    <h2 class="section-title">Mais de 20 anos cuidando<br><em>de pessoas e seus espaços</em></h2>
+    <div class="about-us-content">
+      <div class="about-text-block">
+        <p>A <strong style="color:var(--gold-light)">Ca.Sa.Fe</strong> nasceu da união de dois profissionais com trajetórias complementares e uma crença em comum: o ambiente onde vivemos e trabalhamos é um personagem ativo na nossa saúde, nas nossas relações e no nosso sucesso.</p>
+        <p>Fundada por uma arquiteta especialista em design de interiores e geobiologia e por um especialista em desenvolvimento humano e ambientes corporativos, a Ca.Sa.Fe reúne décadas de experiência prática em obras, ambientação e cuidado genuíno com pessoas.</p>
+        <p>Em cada projeto, unimos sensibilidade técnica, escuta ativa e rigor profissional para entregar espaços que realmente transformam vidas — com resultados documentados e clientes que retornam.</p>
+
+        <div class="founders-grid">
+          <div class="founder-card">
+            <div class="founder-avatar bp">BP</div>
+            <div class="founder-name">Bruna Pereira Powolny</div>
+            <div class="founder-title">Arquiteta · Design de Interiores · Geobiologia</div>
+            <div class="founder-bio">Mais de 20 anos de atuação e mais de 200 projetos entregues com sucesso e retorno comprovado para os clientes. Especialista em criar ambientes que acolhem, curam e inspiram — unindo estética, funcionalidade e ciência geobiológica.</div>
+          </div>
+          <div class="founder-card">
+            <div class="founder-avatar wp">WP</div>
+            <div class="founder-name">Walter Powolny</div>
+            <div class="founder-title">Desenvolvimento Pessoal · Workplaces Multinacionais</div>
+            <div class="founder-bio">18 anos cuidando de workplaces de grandes empresas multinacionais. Especialista em desenvolvimento pessoal e profissional, com visão única sobre como o ambiente impacta diretamente as pessoas e os resultados das organizações.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="about-numbers">
+          <div class="about-num-card"><span class="about-num">20+</span><div class="about-num-label">anos de atuação no mercado de ambientação</div></div>
+          <div class="about-num-card"><span class="about-num">200+</span><div class="about-num-label">projetos concluídos com sucesso</div></div>
+          <div class="about-num-card"><span class="about-num">94%</span><div class="about-num-label">clientes relatam melhoras concretas</div></div>
+          <div class="about-num-card"><span class="about-num">18</span><div class="about-num-label">anos em ambientes corporativos multinacionais</div></div>
+        </div>
+        <div style="margin-top:28px;background:rgba(245,240,232,0.06);border:1px solid rgba(196,160,82,0.2);border-radius:4px;padding:28px 24px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--cream);margin-bottom:12px;">Nossa Missão</div>
+          <p style="font-size:0.9rem;line-height:1.75;color:rgba(245,240,232,0.7);font-weight:300;font-style:italic;">"Transformar cada espaço em um aliado da saúde, vitalidade e harmonia — unindo ciência, sensibilidade e respeito genuíno pela vida de cada pessoa."</p>
+        </div>
+        <div style="margin-top:16px;">
+          <button class="btn-primary open-modal" style="width:100%;text-align:center;">Entre em contato já →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA 2 -->
+<div class="cta-band" style="background:var(--earth-dark);">
+  <div class="container">
+    <h2>Pronto para transformar seu espaço?</h2>
+    <p>Agende uma conversa com um de nossos especialistas. Sem compromisso — apenas clareza sobre como podemos ajudar.</p>
+    <button class="btn-primary open-modal">Entre em contato já →</button>
+  </div>
+</div>
+
+<!-- CONTATO -->
+<section class="contact" id="contato">
+  <div class="container">
+    <div class="section-label">Entre em Contato</div>
+    <h2 class="section-title">O primeiro passo para um<br><em>ambiente transformador</em></h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Vamos conversar sobre seu espaço</h3>
+        <p>Seja um projeto residencial, corporativo ou institucional, oferecemos uma consulta inicial gratuita para entender suas necessidades e apresentar como a geobiologia aplicada pode transformar sua realidade.</p>
+        <div class="contact-detail"><span class="contact-icon">📍</span><span>São Paulo, SP — Brasil</span></div>
+        <div class="contact-detail"><span class="contact-icon">📞</span><span>+55 (12) 99676-2509</span></div>
+        <div class="contact-detail"><span class="contact-icon">✉️</span><span>brunapmk@gmail.com</span></div>
+        <div class="contact-detail"><span class="contact-icon">🕐</span><span>Seg–Sex: 9h às 18h | Sáb: 9h às 13h</span></div>
+        <br>
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&h=280&fit=crop" style="width:100%;border-radius:4px;object-fit:cover;height:200px;margin-top:10px;" alt="Consultoria">
+      </div>
+      <div class="contact-form">
+        <div class="form-title">Ou envie uma mensagem direta</div>
+        <div class="form-row">
+          <div class="form-group"><label>Nome</label><input type="text" placeholder="Seu nome completo"></div>
+          <div class="form-group"><label>WhatsApp</label><input type="tel" placeholder="(00) 00000-0000"></div>
+        </div>
+        <div class="form-group"><label>E-mail</label><input type="email" placeholder="seu@email.com"></div>
+        <div class="form-group"><label>Assunto</label><select><option>Selecione...</option><option>Diagnóstico residencial</option><option>Projeto corporativo</option><option>Dúvidas sobre geobiologia</option><option>Parceria profissional</option><option>Outro</option></select></div>
+        <div class="form-group"><label>Mensagem</label><textarea placeholder="Conte brevemente sobre seu espaço e o que você está buscando..."></textarea></div>
+        <button class="form-submit open-modal">Prefiro agendar uma consulta →</button>
+        <p style="font-size:0.75rem;color:var(--stone);margin-top:12px;text-align:center;font-weight:300;">Retornamos em até 24h. Sem compromisso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo">Ca.Sa.<span>Fe</span></span>
+      <p>Especialistas em geobiologia aplicada à arquitetura e ao desenvolvimento humano. Transformando espaços em fontes de saúde e harmonia há mais de 20 anos.</p>
+    </div>
+    <div class="footer-col"><h4>Serviços</h4><ul><li><a href="#">Diagnóstico Residencial</a></li><li><a href="#">Consultoria Corporativa</a></li><li><a href="#">Projeto Novo</a></li><li><a href="#">Reforma & Readequação</a></li><li><a href="#">Laudo Geobiológico</a></li></ul></div>
+    <div class="footer-col"><h4>Saiba Mais</h4><ul><li><a href="#">O que é Geobiologia</a></li><li><a href="#">Ciência & Medicina</a></li><li><a href="#">Casos de Sucesso</a></li><li><a href="#">Blog</a></li><li><a href="#">Parceiros</a></li></ul></div>
+    <div class="footer-col"><h4>Contato</h4><ul><li><a href="#">📍 São Paulo, SP</a></li><li><a href="#">📞 (12) 99676-2509</a></li><li><a href="mailto:brunapmk@gmail.com">✉ brunapmk@gmail.com</a></li><li><a href="#">📷 Instagram</a></li><li><a href="#">▶ YouTube</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Ca.Sa.Fe Arquitetura & Geobiologia. Todos os direitos reservados.</span>
+    <span>Feito com intenção e ciência.</span>
+  </div>
+</footer>
+
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/5512996762509" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Atendimento via WhatsApp" title="Fale com nossa assistente — atendimento inicial via WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<button class="float-cta open-modal">🌿 Entre em Contato Já</button>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── SCROLL PROGRESS ──
+window.addEventListener('scroll', () => {
+  const el = document.getElementById('scrollProgress');
+  const nav = document.querySelector('nav');
+  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  if (el) el.style.width = pct + '%';
+  if (nav) nav.style.boxShadow = window.scrollY > 80 ? '0 4px 30px rgba(0,0,0,0.08)' : 'none';
+});
+
+// ── MOBILE MENU ──
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('.mob-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// ── ACTIVE NAV ON SCROLL ──
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+const navObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => navObserver.observe(s));
+
+// ── STAT COUNTER ANIMATION ──
+function animateCounter(el, target, suffix) {
+  const duration = 1800;
+  const start = performance.now();
+  const isFloat = target % 1 !== 0;
+  el.dataset.animated = 'true';
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = isFloat ? (eased * target).toFixed(1) : Math.floor(eased * target);
+    el.textContent = current + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+const statObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.stat-num').forEach(el => {
+        if (el.dataset.animated) return;
+        const text = el.textContent.trim();
+        const num = parseFloat(text.replace(/[^0-9.]/g, ''));
+        const suffix = text.replace(/[0-9.]/g, '');
+        animateCounter(el, num, suffix);
+      });
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.hero-stats').forEach(s => statObserver.observe(s));
+
+// ── MODAL ──
+const overlay = document.getElementById('modalOverlay');
+let currentStep = 1;
+const totalSteps = 4;
+let selectedSlot = null;
+let weekOffset = 0;
+
+function openModal() {
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modalBody').style.display = '';
+  document.getElementById('modalFooter').style.display = '';
+  document.getElementById('modalSuccess').classList.remove('show');
+  selectedSlot = null;
+  weekOffset = 0;
+  goToStep(1);
+  // focus trap
+  setTimeout(() => document.getElementById('f_nome') && document.getElementById('f_nome').focus(), 300);
+}
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+// ESC key closes modal
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+});
+
+document.querySelectorAll('.open-modal').forEach(el => {
+  el.addEventListener('click', e => { e.preventDefault(); openModal(); });
+});
+document.getElementById('modalClose').addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+
+function goToStep(n) {
+  currentStep = n;
+  // Clear any previous errors
+  document.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+  document.querySelectorAll('.field-error-msg').forEach(el => el.classList.remove('show'));
+  for (let i = 1; i <= totalSteps; i++) {
+    document.getElementById('step' + i).classList.toggle('visible', i === n);
+    document.getElementById('ps' + i).classList.toggle('active', i <= n);
+  }
+  document.getElementById('stepIndicator').textContent = 'Passo ' + n + ' de ' + totalSteps;
+  document.getElementById('btnBack').style.visibility = n > 1 ? 'visible' : 'hidden';
+  document.getElementById('btnNext').textContent = n === totalSteps ? 'Confirmar Agendamento ✓' : 'Continuar →';
+  if (n === 4) buildScheduler();
+  // Scroll modal to top on step change
+  const box = document.querySelector('.modal-box');
+  if (box) box.scrollTop = 0;
+}
+
+// ── FORM VALIDATION ──
+function showError(input, msg) {
+  input.classList.add('field-error');
+  let errEl = input.parentNode.querySelector('.field-error-msg');
+  if (!errEl) {
+    errEl = document.createElement('div');
+    errEl.className = 'field-error-msg';
+    input.parentNode.appendChild(errEl);
+  }
+  errEl.textContent = msg;
+  errEl.classList.add('show');
+  input.focus();
+  return false;
+}
+function clearError(input) {
+  input.classList.remove('field-error');
+  const errEl = input.parentNode.querySelector('.field-error-msg');
+  if (errEl) errEl.classList.remove('show');
+}
+// Clear errors on input
+document.querySelectorAll('.mform-group input, .mform-group select').forEach(el => {
+  el.addEventListener('input', () => clearError(el));
+  el.addEventListener('change', () => clearError(el));
+});
+
+function validateStep1() {
+  const nome = document.getElementById('f_nome');
+  const tel = document.getElementById('f_tel');
+  const email = document.getElementById('f_email');
+  if (!nome.value.trim() || nome.value.trim().length < 2) return showError(nome, 'Por favor, informe seu nome completo.');
+  if (!tel.value.trim() || tel.value.replace(/\D/g,'').length < 10) return showError(tel, 'Informe um WhatsApp válido com DDD.');
+  if (!email.value.trim() || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value)) return showError(email, 'Informe um e-mail válido.');
+  return true;
+}
+
+document.getElementById('btnNext').addEventListener('click', () => {
+  if (currentStep === 1 && !validateStep1()) return;
+  if (currentStep === totalSteps) {
+    if (!selectedSlot) {
+      const disp = document.getElementById('selectedSlotDisplay');
+      disp.style.borderColor = '#e05a5a';
+      disp.style.display = 'block';
+      disp.innerHTML = '⚠️ Por favor, selecione um horário disponível antes de confirmar.';
+      return;
+    }
+    showSuccess();
+  } else {
+    goToStep(currentStep + 1);
+  }
+});
+document.getElementById('btnBack').addEventListener('click', () => {
+  if (currentStep > 1) goToStep(currentStep - 1);
+});
+
+// Phone mask
+document.getElementById('f_tel').addEventListener('input', function() {
+  let v = this.value.replace(/\D/g,'').substring(0,11);
+  if (v.length >= 7) {
+    v = '(' + v.substring(0,2) + ') ' + v.substring(2,7) + '-' + v.substring(7);
+  } else if (v.length >= 3) {
+    v = '(' + v.substring(0,2) + ') ' + v.substring(2);
+  } else if (v.length > 0) {
+    v = '(' + v;
+  }
+  this.value = v;
+});
+
+// Checkbox highlight
+document.querySelectorAll('.prob-check').forEach(lbl => {
+  lbl.querySelector('input').addEventListener('change', function() {
+    lbl.classList.toggle('sel', this.checked);
+  });
+});
+
+// ── SCHEDULER ──
+const TIMES = ['10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30'];
+const DAY_BUSY = [[0,2,5,8,10],[1,3,6,9],[0,4,7,11],[2,5,8],[1,3,6,10]];
+const MONTHS = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+
+function getMonday(offset) {
+  const today = new Date();
+  const day = today.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  const mon = new Date(today);
+  mon.setDate(today.getDate() + diff + offset * 7);
+  return mon;
+}
+
+function buildScheduler() {
+  const monday = getMonday(weekOffset);
+  const fri = new Date(monday); fri.setDate(monday.getDate() + 4);
+  document.getElementById('weekLabel').textContent =
+    monday.getDate() + ' ' + MONTHS[monday.getMonth()] + ' – ' + fri.getDate() + ' ' + MONTHS[fri.getMonth()];
+  const container = document.getElementById('schedDays');
+  container.innerHTML = '';
+  const days = ['Seg','Ter','Qua','Qui','Sex'];
+  days.forEach((d, di) => {
+    const date = new Date(monday); date.setDate(monday.getDate() + di);
+    const col = document.createElement('div');
+    col.className = 'sched-day-col';
+    col.innerHTML = '<div class="sched-day-header">' + d + '</div><div class="sched-day-date">' + date.getDate() + '/' + (date.getMonth()+1) + '</div><div class="time-slots"></div>';
+    const slotsDiv = col.querySelector('.time-slots');
+    TIMES.forEach((t, ti) => {
+      const isBusy = DAY_BUSY[di].includes(ti);
+      const slot = document.createElement('div');
+      slot.className = 'time-slot ' + (isBusy ? 'busy' : 'available');
+      slot.textContent = isBusy ? '🔒' : t;
+      if (!isBusy) {
+        slot.addEventListener('click', () => {
+          document.querySelectorAll('.time-slot.picked').forEach(s => s.classList.remove('picked'));
+          slot.classList.add('picked');
+          selectedSlot = d + ', ' + date.getDate() + '/' + (date.getMonth()+1) + ' às ' + t;
+          const disp = document.getElementById('selectedSlotDisplay');
+          disp.style.borderColor = '';
+          document.getElementById('selectedSlotText').textContent = selectedSlot;
+          disp.innerHTML = '✅ Horário selecionado: <strong>' + selectedSlot + '</strong>';
+          disp.classList.add('show');
+        });
+      }
+      slotsDiv.appendChild(slot);
+    });
+    container.appendChild(col);
+  });
+}
+
+document.getElementById('prevWeek').addEventListener('click', () => { if (weekOffset > 0) { weekOffset--; buildScheduler(); } });
+document.getElementById('nextWeek').addEventListener('click', () => { weekOffset++; buildScheduler(); });
+
+function showSuccess() {
+  document.getElementById('modalBody').style.display = 'none';
+  document.getElementById('modalFooter').style.display = 'none';
+  document.getElementById('successApptText').textContent = '📅 ' + selectedSlot;
+  document.getElementById('modalSuccess').classList.add('show');
+}
+
+// ── TESTIMONIAL ──
+function showVideoName(input) {
+  const el = document.getElementById('at_video_name');
+  if (input.files && input.files[0]) {
+    el.textContent = '📎 ' + input.files[0].name;
+    el.style.display = 'block';
+  }
+}
+
+function submitTestimonial() {
+  const nome = document.getElementById('at_nome').value.trim();
+  const texto = document.getElementById('at_texto').value.trim();
+  if (!nome) { document.getElementById('at_nome').classList.add('field-error'); document.getElementById('at_nome').focus(); return; }
+  if (!texto || texto.length < 20) { document.getElementById('at_texto').classList.add('field-error'); document.getElementById('at_texto').focus(); return; }
+  document.getElementById('addSuccess').style.display = 'block';
+  document.getElementById('at_nome').value = '';
+  document.getElementById('at_texto').value = '';
+  document.getElementById('at_cidade').value = '';
+  document.getElementById('at_video_name').style.display = 'none';
+  document.getElementById('addSuccess').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ── SMOOTH SCROLL ──
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') { e.preventDefault(); return; }
+    e.preventDefault();
+    // Close mobile menu if open
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ── FADE IN OBSERVER ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.arch-card,.study-card,.benefit-card,.test-card,.country-card,.ba-item,.outcome,.founder-card,.caution-item,.tl-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// ── COOKIE BANNER ──
+(function() {
+  if (localStorage.getItem('casafe_cookie_consent')) return;
+  setTimeout(() => {
+    const banner = document.getElementById('cookieBanner');
+    if (banner) banner.classList.add('show');
+  }, 2000);
+  document.getElementById('cookieAccept').addEventListener('click', () => {
+    localStorage.setItem('casafe_cookie_consent', 'all');
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+  document.getElementById('cookieDecline').addEventListener('click', () => {
+    localStorage.setItem('casafe_cookie_consent', 'essential');
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+})();
+</script>
+
+</body>
+</html>
