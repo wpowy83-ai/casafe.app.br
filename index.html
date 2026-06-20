@@ -545,6 +545,55 @@
     .plan-card.featured:hover { transform:translateY(-8px); }
   }
 
+
+  .hero-microcopy{font-size:.82rem;color:rgba(245,240,232,.6);margin-top:16px;letter-spacing:.03em}
+  .hero-urgency{display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:rgba(196,160,82,.15);border:1px solid rgba(196,160,82,.35);padding:8px 16px;border-radius:100px;font-size:.82rem;color:var(--gold-light)}
+  .identifica{background:var(--charcoal)}
+  .identifica .section-label{color:var(--gold)}
+  .identifica .section-label::before{background:var(--gold)}
+  .identifica .section-title{color:var(--cream)}
+  .identifica-intro{font-size:1.05rem;color:rgba(245,240,232,.7);font-weight:300;max-width:640px;margin:12px 0 48px;line-height:1.75}
+  .sintomas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
+  .sintoma-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:24px 20px;text-align:center;transition:all .3s}
+  .sintoma-card:hover{border-color:var(--gold);background:rgba(196,160,82,.08);transform:translateY(-4px)}
+  .sintoma-icon{font-size:2rem;margin-bottom:12px;display:block}
+  .sintoma-label{font-size:.88rem;color:rgba(245,240,232,.75);font-weight:300;line-height:1.5}
+  .identifica-cta{text-align:center}
+  .identifica-cta p{font-size:.9rem;color:rgba(245,240,232,.5);margin-top:12px;font-weight:300}
+  .como-funciona{background:var(--cream)}
+  .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:60px;position:relative}
+  .steps-grid::before{content:'';position:absolute;top:40px;left:calc(16.66% + 20px);right:calc(16.66% + 20px);height:2px;background:linear-gradient(90deg,var(--sage),var(--gold));z-index:0}
+  .step-card{text-align:center;position:relative;z-index:1}
+  .step-num{width:80px;height:80px;border-radius:50%;background:var(--earth-dark);display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
+  .step-num span{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold-light)}
+  .step-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--earth-dark);margin-bottom:12px}
+  .step-text{font-size:.9rem;line-height:1.7;color:var(--charcoal-soft);font-weight:300}
+  .step-detail{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:16px}
+  .step-tag{background:rgba(107,124,94,.1);border:1px solid rgba(107,124,94,.2);border-radius:100px;padding:3px 10px;font-size:.72rem;color:var(--accent-green);font-weight:400}
+  .faq-section{background:var(--warm-white)}
+  .faq-list{margin-top:48px;max-width:800px;margin-left:auto;margin-right:auto}
+  .faq-item{border-bottom:1px solid var(--stone-light)}
+  .faq-question{width:100%;text-align:left;background:none;border:none;padding:22px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--earth-dark);gap:16px}
+  .faq-icon{font-size:1.4rem;color:var(--sage);flex-shrink:0;transition:transform .3s;line-height:1}
+  .faq-answer{display:none;padding:0 0 22px;font-size:.92rem;line-height:1.75;color:var(--charcoal-soft);font-weight:300}
+  .faq-item.open .faq-answer{display:block}
+  .faq-item.open .faq-icon{transform:rotate(45deg)}
+  .faq-cta{text-align:center;margin-top:40px}
+  .final-cta{background:linear-gradient(135deg,var(--earth-dark) 0%,#2D4028 100%);padding:100px 60px;text-align:center;position:relative;overflow:hidden}
+  .final-cta::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(196,160,82,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(196,160,82,.05) 1px,transparent 1px);background-size:60px 60px}
+  .final-cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+  .final-cta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,3.5rem);font-weight:300;color:var(--cream);margin-bottom:16px;line-height:1.15}
+  .final-cta h2 em{color:var(--gold-light);font-style:italic}
+  .final-cta p{font-size:1rem;color:rgba(245,240,232,.7);margin-bottom:36px;font-weight:300;line-height:1.7}
+  .final-cta-microcopy{font-size:.8rem;color:rgba(245,240,232,.45);font-weight:300;margin-top:12px}
+  .vagas-counter{display:inline-flex;align-items:center;gap:10px;background:rgba(228,72,72,.15);border:1px solid rgba(228,72,72,.3);padding:8px 20px;border-radius:100px;margin-bottom:28px}
+  .vagas-dot{width:8px;height:8px;border-radius:50%;background:#e44848;animation:vaga-pulse 1.5s ease-in-out infinite}
+  @keyframes vaga-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+  .vagas-text{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#f0a0a0}
+  .plan-scarcity{display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(228,72,72,.08);border:1px solid rgba(228,72,72,.2);border-radius:4px;margin-bottom:16px;font-size:.78rem;color:#c45a5a;font-weight:400}
+  .plan-scarcity-dot{width:6px;height:6px;border-radius:50%;background:#e44848;flex-shrink:0;animation:vaga-pulse 1.5s ease-in-out infinite}
+  @media(max-width:900px){.sintomas-grid{grid-template-columns:repeat(2,1fr)}.steps-grid{grid-template-columns:1fr}.steps-grid::before{display:none}.final-cta{padding:60px 24px}}
+
 </style>
 </head>
 <body>
@@ -566,113 +615,49 @@
       <div class="modal-progress">
         <div class="prog-step active" id="ps1"></div>
         <div class="prog-step" id="ps2"></div>
-        <div class="prog-step" id="ps3"></div>
-        <div class="prog-step" id="ps4"></div>
       </div>
     </div>
 
     <div class="modal-body" id="modalBody">
 
-      <!-- STEP 1: dados pessoais -->
+      <!-- STEP 1: dados + problema -->
       <div class="modal-step visible" id="step1">
-        <div class="step-title">1. Seus dados de contato</div>
+        <div class="step-title">1. Sobre você e seu espaço</div>
         <div class="mform-row">
           <div class="mform-group"><label>Nome completo *</label><input type="text" id="f_nome" placeholder="Seu nome completo"></div>
           <div class="mform-group"><label>WhatsApp *</label><input type="tel" id="f_tel" placeholder="(00) 00000-0000"></div>
         </div>
         <div class="mform-group"><label>E-mail *</label><input type="email" id="f_email" placeholder="seu@email.com"></div>
-        <div class="mform-row">
-          <div class="mform-group"><label>Cidade / Estado</label><input type="text" id="f_cidade" placeholder="Ex: São Paulo, SP"></div>
-          <div class="mform-group">
-            <label>Tipo de espaço</label>
-            <select id="f_tipo">
-              <option value="">Selecione...</option>
-              <option>Residência</option>
-              <option>Escritório / Corporativo</option>
-              <option>Clínica / Espaço de Saúde</option>
-              <option>Estabelecimento Comercial</option>
-              <option>Escola / Instituição</option>
-              <option>Outro</option>
-            </select>
+        <div class="mform-group">
+          <label>Tipo de espaço</label>
+          <select id="f_tipo">
+            <option value="">Selecione...</option>
+            <option>Residência</option>
+            <option>Escritório / Corporativo</option>
+            <option>Clínica / Espaço de Saúde</option>
+            <option>Estabelecimento Comercial</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="mform-group">
+          <label>Qual é seu maior desafio hoje? (selecione até 3)</label>
+          <div class="problem-grid">
+            <label class="prob-check"><input type="checkbox" value="Ansiedade"><span>😰 Ansiedade frequente</span></label>
+            <label class="prob-check"><input type="checkbox" value="Insônia"><span>😴 Insônia ou sono ruim</span></label>
+            <label class="prob-check"><input type="checkbox" value="Dor de cabeça"><span>🤕 Dor de cabeça constante</span></label>
+            <label class="prob-check"><input type="checkbox" value="Ambiente pesado"><span>🌫️ Ambiente pesado</span></label>
+            <label class="prob-check"><input type="checkbox" value="Discussões"><span>😤 Discussões frequentes</span></label>
+            <label class="prob-check"><input type="checkbox" value="Falta de foco"><span>🎯 Falta de foco</span></label>
+            <label class="prob-check"><input type="checkbox" value="Cansaço"><span>🔋 Cansaço sem causa</span></label>
+            <label class="prob-check"><input type="checkbox" value="Outros"><span>✏️ Outros</span></label>
           </div>
         </div>
       </div>
 
-      <!-- STEP 2: problemas -->
+      <!-- STEP 2: agendamento -->
       <div class="modal-step" id="step2">
-        <div class="step-title">2. Qual é o seu maior desafio hoje?</div>
-        <p style="font-size:0.88rem;color:var(--charcoal-soft);font-weight:300;margin-bottom:20px;">Selecione um ou mais itens que você percebe no seu espaço ou na sua vida cotidiana:</p>
-        <div class="problem-grid">
-          <label class="prob-check"><input type="checkbox" value="Ansiedade"><span>😰 Ansiedade frequente</span></label>
-          <label class="prob-check"><input type="checkbox" value="Insônia"><span>😴 Insônia ou sono ruim</span></label>
-          <label class="prob-check"><input type="checkbox" value="Dor de cabeça constante"><span>🤕 Dor de cabeça constante</span></label>
-          <label class="prob-check"><input type="checkbox" value="Ambiente carregado"><span>🌫️ Ambiente pesado / carregado</span></label>
-          <label class="prob-check"><input type="checkbox" value="Muitas discussões"><span>😤 Discussões frequentes</span></label>
-          <label class="prob-check"><input type="checkbox" value="Falta de atenção"><span>🎯 Falta de foco e atenção</span></label>
-          <label class="prob-check"><input type="checkbox" value="Cansaço sem causa"><span>🔋 Cansaço excessivo sem causa</span></label>
-          <label class="prob-check"><input type="checkbox" value="Outros"><span>✏️ Outros</span></label>
-        </div>
-        <div class="mform-group">
-          <label>Conte-nos mais sobre sua situação</label>
-          <textarea id="f_detalhe" placeholder="Descreva brevemente o que você percebe no seu espaço e como isso afeta sua rotina..."></textarea>
-        </div>
-        <div class="mform-group">
-          <label>Há quanto tempo você percebe esses sinais?</label>
-          <select id="f_tempo">
-            <option value="">Selecione...</option>
-            <option>Menos de 6 meses</option>
-            <option>Entre 6 meses e 1 ano</option>
-            <option>Entre 1 e 3 anos</option>
-            <option>Mais de 3 anos</option>
-            <option>Sempre foi assim neste local</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- STEP 3: perguntas complementares -->
-      <div class="modal-step" id="step3">
-        <div class="step-title">3. Mais sobre seu espaço</div>
-        <div class="mform-group">
-          <label>Você já realizou alguma intervenção no ambiente?</label>
-          <select id="f_intervencao">
-            <option value="">Selecione...</option>
-            <option>Nunca realizei</option>
-            <option>Sim, fiz reforma estrutural</option>
-            <option>Sim, mudei a decoração / layout</option>
-            <option>Sim, tentei feng shui ou geobiologia</option>
-            <option>Sim, múltiplas intervenções</option>
-          </select>
-        </div>
-        <div class="mform-group">
-          <label>Quantas pessoas convivem no espaço?</label>
-          <select id="f_pessoas">
-            <option value="">Selecione...</option>
-            <option>Moro / trabalho sozinho(a)</option>
-            <option>2 a 3 pessoas</option>
-            <option>4 a 6 pessoas</option>
-            <option>Mais de 6 pessoas</option>
-          </select>
-        </div>
-        <div class="mform-group">
-          <label>Existem crianças ou animais de estimação no espaço?</label>
-          <select id="f_criancas">
-            <option value="">Selecione...</option>
-            <option>Sim, crianças</option>
-            <option>Sim, animais</option>
-            <option>Sim, ambos</option>
-            <option>Não</option>
-          </select>
-        </div>
-        <div class="mform-group">
-          <label>O que você espera da nossa consulta?</label>
-          <textarea id="f_expectativa" placeholder="Ex: quero entender se meu ambiente está prejudicando minha saúde, quero um projeto de readequação..."></textarea>
-        </div>
-      </div>
-
-      <!-- STEP 4: agendamento -->
-      <div class="modal-step" id="step4">
-        <div class="step-title">4. Escolha seu horário</div>
-        <p style="font-size:0.88rem;color:var(--charcoal-soft);font-weight:300;margin-bottom:20px;">Consultas de 30 minutos · Dias úteis · 10h às 16h. Clique em um horário disponível:</p>
+        <div class="step-title">2. Escolha seu horário</div>
+        <p style="font-size:.88rem;color:var(--charcoal-soft);font-weight:300;margin-bottom:20px;">Consultas de 30 minutos · Dias úteis · 10h às 16h. Clique em um horário disponível:</p>
         <div class="sched-week-nav">
           <button class="sched-nav-btn" id="prevWeek">‹</button>
           <span class="sched-week-label" id="weekLabel"></span>
@@ -743,12 +728,14 @@
   <div class="hero-content">
     <div class="fade-up">
       <div class="hero-badge"><div class="hero-dot"></div><span>Arquitetura Consciente & Geobiologia</span></div>
-      <h1>Espaços que <em>curam</em> e transformam vidas</h1>
-      <p class="hero-sub">A ciência da geobiologia revela como o ambiente onde você vive e trabalha afeta profundamente sua saúde, bem-estar e relações. Nós integramos esses princípios ao design arquitetônico.</p>
+      <h1>Seu ambiente pode estar <em>roubando</em> sua saúde e harmonia</h1>
+      <p class="hero-sub">Insônia, ansiedade, cansaço sem causa, conflitos frequentes — muitas vezes o problema não é você. É o seu espaço. A geobiologia identifica e corrige essas perturbações invisíveis.</p>
       <div class="hero-actions">
-        <button class="btn-primary open-modal">Entre em Contato Já</button>
-        <a href="#sobre" class="btn-ghost">Entender a Ciência</a>
+        <button class="btn-primary open-modal">Quero meu diagnóstico gratuito →</button>
+        <a href="#como-funciona" class="btn-ghost">Ver como funciona</a>
       </div>
+      <div class="hero-microcopy">✓ 30 minutos &nbsp;·&nbsp; ✓ Sem compromisso &nbsp;·&nbsp; ✓ Resposta em até 2h</div>
+      <div class="hero-urgency">🗓️ <strong>Julho:</strong> apenas <strong>3 vagas</strong> para diagnóstico presencial</div>
     </div>
     <div class="hero-stats fade-up delay-2">
       <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Anos de<br>Expertise</span></div>
@@ -757,6 +744,58 @@
     </div>
   </div>
   <div class="scroll-hint"><div class="scroll-line"></div>Explorar</div>
+</section>
+
+
+<!-- VOCÊ SE IDENTIFICA? -->
+<section class="identifica" id="identifica">
+  <div class="container">
+    <div class="section-label">Você se identifica?</div>
+    <h2 class="section-title">Sinais que seu espaço<br><em>pode estar te adoecendo</em></h2>
+    <p class="identifica-intro">Se você convive com algum desses sintomas e já tentou de tudo sem resultado consistente, o problema pode não ser você — pode ser o campo energético e geofísico do seu espaço.</p>
+    <div class="sintomas-grid">
+      <div class="sintoma-card"><span class="sintoma-icon">😴</span><div class="sintoma-label">Insônia crônica ou sono de má qualidade mesmo sem estresse aparente</div></div>
+      <div class="sintoma-card"><span class="sintoma-icon">😰</span><div class="sintoma-label">Ansiedade constante sem causa clara, que piora em casa ou no trabalho</div></div>
+      <div class="sintoma-card"><span class="sintoma-icon">🤕</span><div class="sintoma-label">Dores de cabeça frequentes, especialmente num cômodo específico</div></div>
+      <div class="sintoma-card"><span class="sintoma-icon">🔋</span><div class="sintoma-label">Cansaço excessivo sem esforço físico, sensação de energia sugada</div></div>
+      <div class="sintoma-card"><span class="sintoma-icon">😤</span><div class="sintoma-label">Discussões frequentes e clima pesado no ambiente familiar ou corporativo</div></div>
+      <div class="sintoma-card"><span class="sintoma-icon">🎯</span><div class="sintoma-label">Dificuldade de foco e concentração no home office ou sala de estudos</div></div>
+      <div class="sintoma-card"><span class="sintoma-icon">🌫️</span><div class="sintoma-label">Sensação de peso ou desconforto em determinados cômodos da casa</div></div>
+      <div class="sintoma-card"><span class="sintoma-icon">👶</span><div class="sintoma-label">Crianças agitadas, com dificuldade de dormir ou baixo rendimento escolar</div></div>
+    </div>
+    <div class="identifica-cta">
+      <button class="btn-primary open-modal">Sim, me identifico — quero entender o que está acontecendo →</button>
+      <p>Diagnóstico inicial gratuito · 30 minutos · sem compromisso</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="como-funciona" id="como-funciona">
+  <div class="container">
+    <div class="section-label">O Processo</div>
+    <h2 class="section-title">Como funciona a<br><em>consultoria Ca.Sa.Fe</em></h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num"><span>1</span></div>
+        <div class="step-title">Diagnóstico do Espaço</div>
+        <p class="step-text">Analisamos seu ambiente — presencialmente ou por planta baixa — identificando zonas geopáticas, campos eletromagnéticos, orientação solar e fluxos de água subterrânea que afetam seu bem-estar.</p>
+        <div class="step-detail"><span class="step-tag">Online ou presencial</span><span class="step-tag">Instrumentação técnica</span><span class="step-tag">30–90 min</span></div>
+      </div>
+      <div class="step-card">
+        <div class="step-num"><span>2</span></div>
+        <div class="step-title">Relatório & Plano de Ação</div>
+        <p class="step-text">Você recebe um relatório técnico completo com o mapeamento do seu espaço, todas as perturbações identificadas e um plano de ação priorizado com as intervenções recomendadas.</p>
+        <div class="step-detail"><span class="step-tag">Relatório em PDF</span><span class="step-tag">Plantas anotadas</span><span class="step-tag">Priorizado</span></div>
+      </div>
+      <div class="step-card">
+        <div class="step-num"><span>3</span></div>
+        <div class="step-title">Implementação & Acompanhamento</div>
+        <p class="step-text">Aplicamos as soluções de contenção, reposicionamento e biofilia — e monitoramos os resultados em 30, 60 e 90 dias para garantir que as melhorias se consolidem na sua vida.</p>
+        <div class="step-detail"><span class="step-tag">Itens de contenção</span><span class="step-tag">Retornos inclusos</span><span class="step-tag">Resultados documentados</span></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- O QUE É -->
@@ -785,40 +824,6 @@
 
 <div class="divider"></div>
 
-<!-- ARQUITETOS -->
-<section class="architects" id="arquitetos">
-  <div class="container">
-    <div class="section-label">Mestres da Arquitetura Consciente</div>
-    <h2 class="section-title">Arquitetos que <em>revolucionaram</em><br>o design com geobiologia</h2>
-    <div class="arch-grid">
-      <div class="arch-card"><div class="arch-name">Frank Lloyd Wright</div><div class="arch-origin">🇺🇸 Estados Unidos · 1867–1959</div><div class="arch-bio">Criador da "Arquitetura Orgânica", Wright integrava suas obras ao terreno natural com profundo respeito às energias do lugar. Fallingwater é o exemplo máximo: construída sobre corredeiras de água, incorporando as forças naturais do sítio ao design estrutural.</div></div>
-      <div class="arch-card"><div class="arch-name">Rudolf Steiner</div><div class="arch-origin">🇦🇹 Áustria · 1861–1925</div><div class="arch-bio">Fundador da Biodinâmica e criador do Goetheanismo, Steiner projetou o Goetheanum incorporando princípios geobiológicos e antroposóficos. Acreditava que formas arquitetônicas impactam diretamente a consciência dos ocupantes.</div></div>
-      <div class="arch-card"><div class="arch-name">Hundertwasser</div><div class="arch-origin">🇦🇹 Áustria · 1928–2000</div><div class="arch-bio">Radicalmente contrário a linhas retas, Hundertwasser utilizava formas orgânicas e integrava natureza viva às fachadas. Suas obras em Viena são exemplos de arquitetura biofílica que promove bem-estar psicológico mensurável.</div></div>
-      <div class="arch-card"><div class="arch-name">Hassan Fathy</div><div class="arch-origin">🇪🇬 Egito · 1900–1989</div><div class="arch-bio">Pioneiro da arquitetura sustentável no mundo árabe, Fathy reviveu técnicas em terra crua alinhadas com o clima e a geometria solar. Seus projetos demonstraram como materiais locais e orientação correta produzem espaços de saúde natural.</div></div>
-      <div class="arch-card"><div class="arch-name">Alvar Aalto</div><div class="arch-origin">🇫🇮 Finlândia · 1898–1976</div><div class="arch-bio">O finlandês integrou luz natural, materiais orgânicos e formas fluidas em sua arquitetura. O Sanatório de Paimio foi projetado com rigor científico para curar — orientação solar, ventilação natural e ausência de ruído eram princípios centrais.</div></div>
-      <div class="arch-card"><div class="arch-name">Christopher Alexander</div><div class="arch-origin">🇬🇧 Reino Unido · 1936–2022</div><div class="arch-bio">Em "A Pattern Language", Alexander identificou 253 padrões espaciais que promovem vida e bem-estar humano, muitos alinhados com princípios geobiológicos. Sua pesquisa influenciou gerações de arquitetos e urbanistas.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- PAÍSES -->
-<section class="countries-section" id="paises">
-  <div class="container">
-    <div class="section-label">Presença Global</div>
-    <h2 class="section-title">Onde a geobiologia é mais<br><em>praticada e reconhecida</em></h2>
-    <div class="countries-grid">
-      <div class="country-card"><div class="country-flag">🇩🇪</div><div class="country-name">Alemanha</div><div class="country-level level-high">Muito Alta</div><div class="country-desc">Berço científico da geobiologia moderna. Redes Hartmann e Curry são ensinadas em universidades. Centenas de geobiólogos certificados atuam em projetos residenciais e corporativos.</div></div>
-      <div class="country-card"><div class="country-flag">🇫🇷</div><div class="country-name">França</div><div class="country-level level-high">Muito Alta</div><div class="country-desc">Uma das maiores associações de geobiólogos do mundo. Laudas geobiológicas são solicitadas em reformas históricas e projetos de arquitetura bioclimática.</div></div>
-      <div class="country-card"><div class="country-flag">🇨🇭</div><div class="country-name">Suíça</div><div class="country-level level-high">Alta</div><div class="country-desc">Institutos suíços formam profissionais e a geobiologia integra projetos de bioconstrução e medicina integrativa há décadas. Berço do Goetheanum.</div></div>
-      <div class="country-card"><div class="country-flag">🇦🇹</div><div class="country-name">Áustria</div><div class="country-level level-high">Alta</div><div class="country-desc">Legado de Hundertwasser e Steiner. Viena possui bairros projetados com princípios de design biofílico e geobiológico. Forte presença em saúde ambiental.</div></div>
-      <div class="country-card"><div class="country-flag">🇬🇧</div><div class="country-name">Reino Unido</div><div class="country-level level-med">Moderada</div><div class="country-desc">Forte tradição de geomância celta e pesquisa de linhas ley. O Rei Charles III é defensor público da arquitetura sustentável e biofílica.</div></div>
-      <div class="country-card"><div class="country-flag">🇮🇳</div><div class="country-name">Índia</div><div class="country-level level-high">Alta</div><div class="country-desc">Vastu Shastra — o sistema indiano de geobiologia com mais de 5.000 anos — é amplamente praticado por famílias, arquitetos e incorporadoras.</div></div>
-      <div class="country-card"><div class="country-flag">🇨🇳</div><div class="country-name">China</div><div class="country-level level-high">Muito Alta</div><div class="country-desc">Feng Shui é obrigatório em projetos corporativos de empresas como HSBC, Hyatt e Samsung em Hong Kong. Faturamento da indústria supera $2 bilhões/ano.</div></div>
-      <div class="country-card"><div class="country-flag">🇧🇷</div><div class="country-name">Brasil</div><div class="country-level level-med">Crescente</div><div class="country-desc">Crescimento expressivo nos últimos 10 anos, especialmente em São Paulo e Rio. Profissionais atuam em projetos de alto padrão, arquitetura hospitalar e bioconstrução.</div></div>
-    </div>
-  </div>
-</section>
-
 <!-- ANTES E DEPOIS -->
 <section class="before-after" id="projetos">
   <div class="container">
@@ -834,13 +839,7 @@
 </section>
 
 <!-- CTA 1 -->
-<div class="cta-band">
-  <div class="container">
-    <h2>Seu espaço pode estar afetando sua saúde sem você saber</h2>
-    <p>Solicite um diagnóstico geobiológico gratuito e descubra como seu ambiente impacta seu bem-estar.</p>
-    <button class="btn-primary open-modal">Entre em contato já →</button>
-  </div>
-</div>
+
 
 <!-- SAÚDE E CIÊNCIA -->
 <section class="health-science" id="saude">
@@ -962,6 +961,7 @@
             <p style="font-size:0.72rem;color:var(--stone);margin-top:10px;font-weight:300;">*Itens indicados no relatório. Fornecimento e instalação por conta do cliente com nosso guia.</p>
           </div>
 
+          <div class="plan-scarcity"><div class="plan-scarcity-dot"></div>Apenas 5 vagas online por mês</div>
           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=PLANO_VIRTUAL_CASAFE" class="plan-cta outline" target="_blank">
             Contratar diagnóstico virtual →
           </a>
@@ -1015,6 +1015,7 @@
             <p style="font-size:0.72rem;color:var(--stone);margin-top:10px;font-weight:300;">*Itens básicos inclusos no valor. Itens adicionais sob orçamento.</p>
           </div>
 
+          <div class="plan-scarcity"><div class="plan-scarcity-dot"></div>3 vagas presenciais disponíveis em julho</div>
           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=PLANO_PRESENCIAL_CASAFE" class="plan-cta gold" target="_blank">
             Agendar visita presencial →
           </a>
@@ -1092,28 +1093,6 @@
   </div>
 </section>
 
-<!-- DEPOIMENTOS -->
-<section class="testimonials" id="depoimentos">
-  <div class="container">
-    <div class="section-label">Relatos Reais</div>
-    <h2 class="section-title">Histórias de<br><em>transformação</em></h2>
-    <div class="test-grid" id="testimonialsGrid">
-      <div class="test-card"><div class="test-quote">"</div><div class="test-text">Eu dormia mal há 7 anos. Tentei tudo. Quando a Ca.Sa.Fe fez o diagnóstico, identificou um cruzamento de linhas Hartmann exatamente sob minha cama. Em 45 dias com o quarto reorganizado, estava dormindo profundamente pela primeira vez em anos.</div><div class="test-author"><div class="test-avatar">MR</div><div><div class="test-name">Marina Rodrigues</div><div class="test-role">Empresária · São Paulo</div></div></div></div>
-      <div class="test-card"><div class="test-quote">"</div><div class="test-text">Nossa empresa passou por uma transformação silenciosa. Após o estudo geobiológico do escritório e as intervenções recomendadas, o clima entre as equipes melhorou visivelmente. Menos conflitos, mais criatividade. O RH notou antes mesmo de eu conectar ao trabalho da Ca.Sa.Fe.</div><div class="test-author"><div class="test-avatar">CF</div><div><div class="test-name">Carlos Fontes</div><div class="test-role">CEO de Startup · Florianópolis</div></div></div></div>
-      <div class="test-card"><div class="test-quote">"</div><div class="test-text">Como médica integrativa, era cética. Depois de acompanhar 3 pacientes com mudanças mensuráveis em marcadores de cortisol e qualidade de sono após a intervenção, me tornei parceira e já indico rotineiramente a Ca.Sa.Fe aos meus pacientes.</div><div class="test-author"><div class="test-avatar">DS</div><div><div class="test-name">Dra. Daniela Souza</div><div class="test-role">Médica Integrativa · Rio de Janeiro</div></div></div></div>
-    </div>
-
-    <div class="video-note">
-      <div class="video-thumb"><div class="play-btn">▶</div><div class="video-label">Relato: Família Silva — Reforma residencial completa</div></div>
-      <div class="video-thumb"><div class="play-btn">▶</div><div class="video-label">Caso: Escritório corporativo — antes e depois</div></div>
-      <div class="video-thumb"><div class="play-btn">▶</div><div class="video-label">Entrevista: Dra. Daniela Souza sobre medicina e geobiologia</div></div>
-    </div>
-
-
-  </div>
-    <div class="add-testimonial-section">      <div class="add-test-title">Compartilhe sua experiência</div>      <div class="add-test-sub">Seu relato pode inspirar outra pessoa a transformar seu espaço.</div>      <div class="add-test-form">        <div class="add-field"><label>Nome *</label><input type="text" id="at_nome" placeholder="Seu nome"></div>        <div class="add-field"><label>Cidade</label><input type="text" id="at_cidade" placeholder="Ex: São Paulo, SP"></div>        <div class="add-field full"><label>Seu depoimento *</label><textarea id="at_texto" placeholder="Conte como a consultoria impactou sua vida e seu espaço..."></textarea></div>        <div class="add-field full">          <label>Vídeo (opcional)</label>          <div class="video-upload-area" onclick="document.getElementById('at_video').click()">            <div class="upload-icon">🎥</div>            <strong style="color:var(--gold)">Clique para selecionar um vídeo</strong>            <p>MP4, MOV ou AVI · até 100 MB</p>            <div id="at_video_name" style="display:none;margin-top:8px;font-size:0.8rem;color:var(--sage-light);"></div>          </div>          <input type="file" id="at_video" accept="video/*" style="display:none" onchange="showVideoName(this)">        </div>        <div class="add-field full">          <button class="btn-add-test" onclick="submitTestimonial()">Enviar depoimento →</button>          <div class="add-success" id="addSuccess">✅ Obrigado! Seu depoimento foi recebido e será publicado após revisão.</div>        </div>      </div>    </div>
-</section>
-
 <!-- QUEM SOMOS -->
 <section class="about-us" id="empresa">
   <div class="container">
@@ -1159,14 +1138,27 @@
   </div>
 </section>
 
-<!-- CTA 2 -->
-<div class="cta-band" style="background:var(--earth-dark);">
+
+<!-- DEPOIMENTOS -->
+<section class="testimonials" id="depoimentos">
   <div class="container">
-    <h2>Pronto para transformar seu espaço?</h2>
-    <p>Agende uma conversa com um de nossos especialistas. Sem compromisso — apenas clareza sobre como podemos ajudar.</p>
-    <button class="btn-primary open-modal">Entre em contato já →</button>
+    <div class="section-label">Relatos Reais</div>
+    <h2 class="section-title">Histórias de<br><em>transformação</em></h2>
+    <div class="test-grid" id="testimonialsGrid">
+      <div class="test-card"><div class="test-quote">"</div><div class="test-text">Eu dormia mal há 7 anos. Tentei tudo. Quando a Ca.Sa.Fe fez o diagnóstico, identificou um cruzamento de linhas Hartmann exatamente sob minha cama. Em 45 dias com o quarto reorganizado, estava dormindo profundamente pela primeira vez em anos.</div><div class="test-author"><div class="test-avatar">MR</div><div><div class="test-name">Marina Rodrigues</div><div class="test-role">Empresária · São Paulo</div></div></div></div>
+      <div class="test-card"><div class="test-quote">"</div><div class="test-text">Nossa empresa passou por uma transformação silenciosa. Após o estudo geobiológico do escritório e as intervenções recomendadas, o clima entre as equipes melhorou visivelmente. Menos conflitos, mais criatividade. O RH notou antes mesmo de eu conectar ao trabalho da Ca.Sa.Fe.</div><div class="test-author"><div class="test-avatar">CF</div><div><div class="test-name">Carlos Fontes</div><div class="test-role">CEO de Startup · Florianópolis</div></div></div></div>
+      <div class="test-card"><div class="test-quote">"</div><div class="test-text">Como médica integrativa, era cética. Depois de acompanhar 3 pacientes com mudanças mensuráveis em marcadores de cortisol e qualidade de sono após a intervenção, me tornei parceira e já indico rotineiramente a Ca.Sa.Fe aos meus pacientes.</div><div class="test-author"><div class="test-avatar">DS</div><div><div class="test-name">Dra. Daniela Souza</div><div class="test-role">Médica Integrativa · Rio de Janeiro</div></div></div></div>
+    </div>
+
+    <div class="video-note">
+      <div class="video-thumb"><div class="play-btn">▶</div><div class="video-label">Relato: Família Silva — Reforma residencial completa</div></div>
+      <div class="video-thumb"><div class="play-btn">▶</div><div class="video-label">Caso: Escritório corporativo — antes e depois</div></div>
+      <div class="video-thumb"><div class="play-btn">▶</div><div class="video-label">Entrevista: Dra. Daniela Souza sobre medicina e geobiologia</div></div>
+    </div>
+
+
   </div>
-</div>
+</section>
 
 <!-- CONTATO -->
 <section class="contact" id="contato">
@@ -1218,9 +1210,10 @@
 </footer>
 
 
+
 <!-- COOKIE BANNER -->
 <div class="cookie-banner" id="cookieBanner">
-  <p>Usamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa <a href="#">Política de Privacidade</a>.</p>
+  <p>Usamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="#">Política de Privacidade</a>.</p>
   <div class="cookie-actions">
     <button class="btn-cookie-accept" id="cookieAccept">Aceitar</button>
     <button class="btn-cookie-decline" id="cookieDecline">Só essenciais</button>
@@ -1232,9 +1225,34 @@
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<button class="float-cta open-modal">🌿 Entre em Contato Já</button>
 
 <script>
+
+// ── FAQ ACCORDION ──
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ── WHATSAPP FORM SENDER ──
+function enviarFormWhatsApp(e) {
+  e.preventDefault();
+  const nome  = document.querySelector('.contact-form input[type=text]');
+  const tel   = document.querySelector('.contact-form input[type=tel]');
+  const email = document.querySelector('.contact-form input[type=email]');
+  const assunto = document.querySelector('.contact-form select');
+  const msg   = document.querySelector('.contact-form textarea');
+  if (!nome || !nome.value.trim()) { alert('Por favor, informe seu nome.'); return; }
+  const texto = 'Olá, Ca.Sa.Fe! Meu nome é ' + nome.value.trim() + '.' +
+    (assunto && assunto.value ? ' Assunto: ' + assunto.value + '.' : '') +
+    (msg && msg.value.trim() ? ' ' + msg.value.trim() : '') +
+    (tel && tel.value.trim() ? ' WhatsApp: ' + tel.value.trim() : '') +
+    (email && email.value.trim() ? ' Email: ' + email.value.trim() : '');
+  window.open('https://wa.me/5512996762509?text=' + encodeURIComponent(texto), '_blank');
+}
+
 // ── SCROLL PROGRESS ──
 window.addEventListener('scroll', () => {
   const el = document.getElementById('scrollProgress');
@@ -1308,7 +1326,7 @@ document.querySelectorAll('.hero-stats').forEach(s => statObserver.observe(s));
 // ── MODAL ──
 const overlay = document.getElementById('modalOverlay');
 let currentStep = 1;
-const totalSteps = 4;
+const totalSteps = 2;
 let selectedSlot = null;
 let weekOffset = 0;
 
@@ -1346,12 +1364,13 @@ function goToStep(n) {
   document.querySelectorAll('.field-error-msg').forEach(el => el.classList.remove('show'));
   for (let i = 1; i <= totalSteps; i++) {
     document.getElementById('step' + i).classList.toggle('visible', i === n);
-    document.getElementById('ps' + i).classList.toggle('active', i <= n);
+    const ps = document.getElementById('ps' + i); if(ps) ps.classList.toggle('active', i <= n);
   }
   document.getElementById('stepIndicator').textContent = 'Passo ' + n + ' de ' + totalSteps;
   document.getElementById('btnBack').style.visibility = n > 1 ? 'visible' : 'hidden';
   document.getElementById('btnNext').textContent = n === totalSteps ? 'Confirmar Agendamento ✓' : 'Continuar →';
-  if (n === 4) buildScheduler();
+  if (n === 2) buildScheduler();
+
   // Scroll modal to top on step change
   const box = document.querySelector('.modal-box');
   if (box) box.scrollTop = 0;
@@ -1545,23 +1564,6 @@ document.querySelectorAll('.arch-card,.study-card,.benefit-card,.test-card,.coun
   el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
   observer.observe(el);
 });
-
-// ── WHATSAPP FORM SENDER ──
-function enviarFormWhatsApp(e) {
-  e.preventDefault();
-  const nome   = document.querySelector(".contact-form input[type=text]").value.trim();
-  const tel    = document.querySelector(".contact-form input[type=tel]").value.trim();
-  const email  = document.querySelector(".contact-form input[type=email]").value.trim();
-  const assunto= document.querySelector(".contact-form select").value;
-  const msg    = document.querySelector(".contact-form textarea").value.trim();
-  if (!nome) { alert("Por favor, informe seu nome."); return; }
-  const texto = "Olá, Ca.Sa.Fe! Meu nome é " + nome + "." +
-    (assunto ? " Assunto: " + assunto + "." : "") +
-    (msg ? " " + msg : "") +
-    (tel ? " WhatsApp: " + tel : "") +
-    (email ? " Email: " + email : "");
-  window.open("https://wa.me/5512996762509?text=" + encodeURIComponent(texto), "_blank");
-}
 
 // ── COOKIE BANNER ──
 (function() {
