@@ -675,7 +675,7 @@
     <div class="modal-success" id="modalSuccess">
       <div class="success-icon">🌿</div>
       <div class="success-title">Agendamento confirmado!</div>
-      <div class="success-sub">Recebemos sua solicitação e entraremos em contato em até <strong>72 horas</strong>. Fique atento ao WhatsApp!</div>
+      <div class="success-sub">Recebemos sua solicitação e entraremos em contato em até <strong>72 horas</strong> para confirmar sua consulta. Fique atento ao WhatsApp!</div>
       <div class="success-appt" id="successApptText"></div>
       <button class="btn-primary" onclick="closeModal()">Fechar</button>
     </div>
@@ -687,37 +687,6 @@
     </div>
   </div>
 </div>
-
-<!-- ══════════════════════════════════
-     INTRO HERO (iframe)
-══════════════════════════════════ -->
-<section id="intro-section" style="position:relative;width:100%;height:100vh;overflow:hidden;background:#0e1f14;">
-  <iframe
-    src="intro.html"
-    id="intro-frame"
-    style="width:100%;height:100%;border:none;display:block;"
-    allowfullscreen
-    loading="eager"
-  ></iframe>
-  <!-- Scroll indicator -->
-  <div id="intro-scroll-hint" style="
-    position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-    display:flex;flex-direction:column;align-items:center;gap:8px;
-    color:rgba(255,255,255,0.75);font-family:'Barlow Condensed',sans-serif;
-    font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;
-    cursor:pointer;animation:bounce 2s infinite;z-index:10;
-  " onclick="document.getElementById('intro-section').nextElementSibling.scrollIntoView({behavior:'smooth'})">
-    <span>Conheça</span>
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-  </div>
-</section>
-<style>
-  @keyframes bounce {
-    0%,100%{transform:translateX(-50%) translateY(0)}
-    50%{transform:translateX(-50%) translateY(8px)}
-  }
-  #intro-section { scroll-snap-align: start; }
-</style>
 
 <!-- ══════════════════════════════════
      NAV
@@ -762,11 +731,11 @@
       <h1>Seu ambiente pode estar <em>roubando</em> sua saúde e harmonia</h1>
       <p class="hero-sub">Insônia, ansiedade, cansaço sem causa, conflitos frequentes — muitas vezes o problema não é você. É o seu espaço. A geobiologia identifica e corrige essas perturbações invisíveis.</p>
       <div class="hero-actions">
-        <button class="btn-primary open-modal">Entrar na lista de espera →</button>
+        <button class="btn-primary open-modal">Entrar na Lista de Espera →</button>
         <a href="#como-funciona" class="btn-ghost">Ver como funciona</a>
       </div>
-      <div class="hero-microcopy">✓ Consulta gratuita &nbsp;·&nbsp; ✓ Sem compromisso &nbsp;·&nbsp; ✓ Resposta em até 72h</div>
-      <div class="hero-urgency">🗓️ <strong>Julho:</strong> apenas <strong>3 vagas</strong> para diagnóstico presencial</div>
+      <div class="hero-microcopy">✓ 30 minutos &nbsp;·&nbsp; ✓ Sem compromisso &nbsp;·&nbsp; ✓ Resposta em até 72h</div>
+      <div class="hero-urgency">🗓️ <strong>Julho:</strong> apenas <strong>15 vagas</strong> disponíveis no mês</div>
     </div>
     <div class="hero-stats fade-up delay-2">
       <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Anos de<br>Expertise</span></div>
@@ -849,6 +818,22 @@
           <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">Séc. XXI</div><div class="tl-text">Integração com neurociência, medicina funcional e arquitetura biofílica. Estudos de Harvard e OMS correlacionam qualidade ambiental com saúde mental, produtividade e longevidade.</div></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ANTES E DEPOIS -->
+<section class="before-after" id="projetos">
+  <div class="container">
+    <div class="section-label">Transformações Reais</div>
+    <h2 class="section-title">Antes e depois da<br><em>intervenção geobiológica</em></h2>
+    <div class="ba-grid">
+      <div class="ba-item"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop" class="ba-img" alt="Antes"><div class="ba-overlay"><span class="ba-tag tag-before">● Antes</span><div class="ba-title">Escritório Corporativo SP</div><div class="ba-desc">Alta rotatividade, queixas de cefaleia, produtividade baixa, conflitos frequentes entre equipe.</div><div class="ba-results"><span class="ba-pill">Estresse alto</span><span class="ba-pill">Ruído 68dB</span><span class="ba-pill">Luz artificial</span></div></div></div>
+      <div class="ba-item"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop" class="ba-img" alt="Depois"><div class="ba-overlay"><span class="ba-tag tag-after">● Depois</span><div class="ba-title">Escritório Corporativo SP</div><div class="ba-desc">Reorientação de estações, correção eletromagnética, biofilia integrada, iluminação circadiana.</div><div class="ba-results"><span class="ba-pill">-42% Absenteísmo</span><span class="ba-pill">+38% Produtividade</span><span class="ba-pill">Conflitos reduzidos</span></div></div></div>
+      <div class="ba-item"><img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800&h=500&fit=crop" class="ba-img" alt="Antes"><div class="ba-overlay"><span class="ba-tag tag-before">● Antes</span><div class="ba-title">Residência — Família de 4 pessoas</div><div class="ba-desc">Insônia crônica, ansiedade, crianças com dificuldade de concentração, relacionamentos tensos.</div><div class="ba-results"><span class="ba-pill">Insônia</span><span class="ba-pill">Ansiedade</span><span class="ba-pill">TDAH infantil</span></div></div></div>
+      <div class="ba-item"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&h=500&fit=crop" class="ba-img" alt="Depois"><div class="ba-overlay"><span class="ba-tag tag-after">● Depois</span><div class="ba-title">Residência — Família de 4 pessoas</div><div class="ba-desc">Remapeamento do quarto, proteção de zonas geopáticas, uso de materiais naturais e reorientação de móveis.</div><div class="ba-results"><span class="ba-pill">Sono restaurado</span><span class="ba-pill">-60% Ansiedade</span><span class="ba-pill">Harmonia familiar</span></div></div></div>
     </div>
   </div>
 </section>
@@ -946,8 +931,8 @@
 
         <div class="plan-price-block">
           <div class="plan-price-label">Investimento único</div>
-          <div class="plan-price"><sup>R$</sup> 1.487</div>
-          <div class="plan-installment">ou 12× de R$ 148 no cartão</div>
+          <div class="plan-price"><sup>R$</sup> 3.480</div>
+          <div class="plan-installment">ou 12× de R$ 290 no cartão</div>
           <div class="plan-price-note">Até 2 ambientes · até 20 m² cada</div>
         </div>
 
@@ -976,7 +961,7 @@
             <p style="font-size:0.72rem;color:var(--stone);margin-top:10px;font-weight:300;">*Itens indicados no relatório. Fornecimento e instalação por conta do cliente com nosso guia.</p>
           </div>
 
-          <div class="plan-scarcity"><div class="plan-scarcity-dot"></div>Apenas 5 vagas online por mês</div>
+          <div class="plan-scarcity"><div class="plan-scarcity-dot"></div>Apenas 10 vagas online por mês · Lista de espera ativa</div>
           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=PLANO_VIRTUAL_CASAFE" class="plan-cta outline" target="_blank">
             Contratar diagnóstico virtual →
           </a>
@@ -997,8 +982,8 @@
 
         <div class="plan-price-block">
           <div class="plan-price-label">Investimento único</div>
-          <div class="plan-price"><sup>R$</sup> 3.480</div>
-          <div class="plan-installment">ou 12× de R$ 348 no cartão</div>
+          <div class="plan-price"><sup>R$</sup> 5.435</div>
+          <div class="plan-installment">ou 12× de R$ 453 no cartão</div>
           <div class="plan-price-note">Residência ou escritório completo · deslocamento incluso</div>
         </div>
 
@@ -1030,7 +1015,7 @@
             <p style="font-size:0.72rem;color:var(--stone);margin-top:10px;font-weight:300;">*Itens básicos inclusos no valor. Itens adicionais sob orçamento.</p>
           </div>
 
-          <div class="plan-scarcity"><div class="plan-scarcity-dot"></div>3 vagas presenciais disponíveis em julho</div>
+          <div class="plan-scarcity"><div class="plan-scarcity-dot"></div>Apenas 5 vagas presenciais por mês · Lista de espera ativa</div>
           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=PLANO_PRESENCIAL_CASAFE" class="plan-cta gold" target="_blank">
             Agendar visita presencial →
           </a>
@@ -1049,10 +1034,9 @@
         </div>
 
         <div class="plan-price-block">
-          <div class="plan-price-label">A partir de</div>
-          <div class="plan-price"><sup>R$</sup> 5.435</div>
-          <div class="plan-installment">ou 12× de R$ 543 no cartão</div>
-          <div class="plan-price-note">Deslocamento cobrado à parte · orçamento personalizado</div>
+          <div class="plan-price-label">Orçamento personalizado</div>
+          <div class="plan-price" style="font-size:2.2rem;letter-spacing:-0.5px;">Solicite<br>seu orçamento</div>
+          <div class="plan-price-note" style="margin-top:10px;">Valor conforme escopo, localidade e materiais · deslocamento à parte</div>
         </div>
 
         <div class="plan-body">
@@ -1101,7 +1085,7 @@
 
     <div class="pricing-disclaimer">
       <strong>🔒 Pagamento 100% seguro</strong> via Mercado Pago — Pix, cartão de crédito em até 12× ou boleto bancário. 
-      Pix tem <strong>5% de desconto</strong> automático. Após o pagamento, você recebe a confirmação imediata e entramos em contato em até 2h para iniciar o processo.
+      Pix tem <strong>5% de desconto</strong> automático. Após o pagamento, você recebe a confirmação imediata e entramos em contato em até 72h para iniciar o processo.
       <br>Dúvidas? Fale diretamente com a equipe: <strong>+55 (12) 99676-2509</strong>
     </div>
 
@@ -1146,13 +1130,34 @@
           <p style="font-size:0.9rem;line-height:1.75;color:rgba(245,240,232,0.7);font-weight:300;font-style:italic;">"Transformar cada espaço em um aliado da saúde, vitalidade e harmonia — unindo ciência, sensibilidade e respeito genuíno pela vida de cada pessoa."</p>
         </div>
         <div style="margin-top:16px;">
-          <button class="btn-primary open-modal" style="width:100%;text-align:center;">Entrar na lista de espera →</button>
+          <button class="btn-primary open-modal" style="width:100%;text-align:center;">Entre em contato já →</button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+
+<!-- DEPOIMENTOS -->
+<section class="testimonials" id="depoimentos">
+  <div class="container">
+    <div class="section-label">Relatos Reais</div>
+    <h2 class="section-title">Histórias de<br><em>transformação</em></h2>
+    <div class="test-grid" id="testimonialsGrid">
+      <div class="test-card"><div class="test-quote">"</div><div class="test-text">Eu dormia mal há 7 anos. Tentei tudo. Quando a Ca.Sa.Fe fez o diagnóstico, identificou um cruzamento de linhas Hartmann exatamente sob minha cama. Em 45 dias com o quarto reorganizado, estava dormindo profundamente pela primeira vez em anos.</div><div class="test-author"><div class="test-avatar">MR</div><div><div class="test-name">Marina Rodrigues</div><div class="test-role">Empresária · São Paulo</div></div></div></div>
+      <div class="test-card"><div class="test-quote">"</div><div class="test-text">Nossa empresa passou por uma transformação silenciosa. Após o estudo geobiológico do escritório e as intervenções recomendadas, o clima entre as equipes melhorou visivelmente. Menos conflitos, mais criatividade. O RH notou antes mesmo de eu conectar ao trabalho da Ca.Sa.Fe.</div><div class="test-author"><div class="test-avatar">CF</div><div><div class="test-name">Carlos Fontes</div><div class="test-role">CEO de Startup · Florianópolis</div></div></div></div>
+      <div class="test-card"><div class="test-quote">"</div><div class="test-text">Como médica integrativa, era cética. Depois de acompanhar 3 pacientes com mudanças mensuráveis em marcadores de cortisol e qualidade de sono após a intervenção, me tornei parceira e já indico rotineiramente a Ca.Sa.Fe aos meus pacientes.</div><div class="test-author"><div class="test-avatar">DS</div><div><div class="test-name">Dra. Daniela Souza</div><div class="test-role">Médica Integrativa · Rio de Janeiro</div></div></div></div>
+    </div>
+
+    <div class="video-note">
+      <div class="video-thumb"><div class="play-btn">▶</div><div class="video-label">Relato: Família Silva — Reforma residencial completa</div></div>
+      <div class="video-thumb"><div class="play-btn">▶</div><div class="video-label">Caso: Escritório corporativo — antes e depois</div></div>
+      <div class="video-thumb"><div class="play-btn">▶</div><div class="video-label">Entrevista: Dra. Daniela Souza sobre medicina e geobiologia</div></div>
+    </div>
+
+
+  </div>
+</section>
 
 <!-- CONTATO -->
 <section class="contact" id="contato">
@@ -1167,7 +1172,6 @@
         <div class="contact-detail"><span class="contact-icon">📞</span><span>+55 (12) 99676-2509</span></div>
         <div class="contact-detail"><span class="contact-icon">✉️</span><span>brunapmk@gmail.com</span></div>
         <div class="contact-detail"><span class="contact-icon">🕐</span><span>Seg–Sex: 9h às 18h | Sáb: 9h às 13h</span></div>
-        <div class="contact-detail"><a href="https://www.youtube.com/@BrunaPowolny" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;color:var(--earth);text-decoration:none;font-weight:500;"><span class="contact-icon" style="background:#FF0000;color:#fff;border-radius:4px;width:28px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;">▶</span><span>YouTube — Bruna Powolny · CASAFE</span></a></div>
         <br>
         <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=500&h=280&fit=crop" style="width:100%;border-radius:4px;object-fit:cover;height:200px;margin-top:10px;" alt="Consultoria">
       </div>
@@ -1181,7 +1185,7 @@
         <div class="form-group"><label>Assunto</label><select><option>Selecione...</option><option>Diagnóstico residencial</option><option>Projeto corporativo</option><option>Dúvidas sobre geobiologia</option><option>Parceria profissional</option><option>Outro</option></select></div>
         <div class="form-group"><label>Mensagem</label><textarea placeholder="Conte brevemente sobre seu espaço e o que você está buscando..."></textarea></div>
         <button class="form-submit" onclick="enviarFormWhatsApp(event)">Enviar mensagem via WhatsApp →</button>
-        <p style="font-size:0.75rem;color:var(--stone);margin-top:12px;text-align:center;font-weight:300;">Entraremos em contato em até 72 horas. Sem compromisso.</p>
+        <p style="font-size:0.75rem;color:var(--stone);margin-top:12px;text-align:center;font-weight:300;">Retornamos em até 72h. Sem compromisso.</p>
       </div>
     </div>
   </div>
@@ -1196,7 +1200,7 @@
     </div>
     <div class="footer-col"><h4>Serviços</h4><ul><li><a href="#">Diagnóstico Residencial</a></li><li><a href="#">Consultoria Corporativa</a></li><li><a href="#">Projeto Novo</a></li><li><a href="#">Reforma & Readequação</a></li><li><a href="#">Laudo Geobiológico</a></li></ul></div>
     <div class="footer-col"><h4>Saiba Mais</h4><ul><li><a href="#">O que é Geobiologia</a></li><li><a href="#">Ciência & Medicina</a></li><li><a href="#">Casos de Sucesso</a></li><li><a href="#">Blog</a></li><li><a href="#">Parceiros</a></li></ul></div>
-    <div class="footer-col"><h4>Contato</h4><ul><li><a href="#">📍 São Paulo, SP</a></li><li><a href="#">📞 (12) 99676-2509</a></li><li><a href="mailto:brunapmk@gmail.com">✉ brunapmk@gmail.com</a></li><li><a href="https://www.instagram.com/brunapowolny" target="_blank" rel="noopener">📷 Instagram</a></li><li><a href="https://www.youtube.com/@BrunaPowolny" target="_blank" rel="noopener">▶ YouTube — Bruna Powolny</a></li></ul></div>
+    <div class="footer-col"><h4>Contato</h4><ul><li><a href="#">📍 São Paulo, SP</a></li><li><a href="#">📞 (12) 99676-2509</a></li><li><a href="mailto:brunapmk@gmail.com">✉ brunapmk@gmail.com</a></li><li><a href="#">📷 Instagram</a></li><li><a href="#">▶ YouTube</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <span>© 2025 Ca.Sa.Fe Arquitetura & Geobiologia. Todos os direitos reservados.</span>
@@ -1573,10 +1577,4 @@ document.querySelectorAll('.arch-card,.study-card,.benefit-card,.test-card,.coun
   });
   document.getElementById('cookieDecline').addEventListener('click', () => {
     localStorage.setItem('casafe_cookie_consent', 'essential');
-    document.getElementById('cookieBanner').classList.remove('show');
-  });
-})();
-</script>
-
-</body>
-</html>
+    document.getElementById('cookieBanner').clas
