@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>* { margin:0; padding:0; box-sizing:border-box; } body { background:#0e1f14; overflow:hidden; }</style>
+</helmet>
+<div style="position:fixed;inset:0;overflow:hidden">{{ hero }}</div>
+{{ recordBtn }}
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg">
+    <rect width="80" height="56" fill="#0e1f14"/>
+    <circle cx="40" cy="28" r="22" fill="none" stroke="#4db87a" stroke-width="0.7" opacity="0.35"/>
+    <circle cx="40" cy="28" r="15" fill="none" stroke="#4db87a" stroke-width="0.7" opacity="0.35"/>
+    <circle cx="40" cy="28" r="8"  fill="none" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/>
+    <text x="40" y="31" text-anchor="middle" fill="#f0ead8" font-family="Georgia,serif" font-size="7" font-weight="600" letter-spacing="1.5">CA.SA.FE.</text>
+  </svg>
+</template>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const _serif = "'Cormorant Garamond', Georgia, serif";
+const _sans  = "'DM Sans', system-ui, sans-serif";
+const _cream = '#f0ead8';
+const _green = '#4db87a';
+const _gold  = '#c9a84c';
+const _muted = '#8ab89a';
+
+const mkIcon = (name, sz, col) => {
+  const E = React.createElement;
+  const c = col || _cream;
+  const s = { fill:'none', stroke:c, strokeWidth:1.5, strokeLinecap:'round', strokeLinejoin:'round' };
+  const svg = (...ch) => E('svg',{ viewBox:'0 0 40 40', width:sz, height:sz, style:{ flexShrink:0, display:'block', overflow:'visible' } }, ...ch);
+  if (name==='moon')   return svg(E('path',{...s,d:'M 22 6 A 14 14 0 1 0 22 34 A 11 11 0 0 1 22 6 Z'}));
+  if (name==='pulse')  return svg(E('polyline',{...s,points:'2,20 10,20 14,9 18,31 22,15 26,20 38,20'}));
+  if (name==='bolt')   return svg(E('path',{...s,d:'M 25 4 L 14 22 L 21 22 L 15 36 L 28 18 L 21 18 Z'}));
+  if (name==='target') return svg(E('circle',{...s,cx:20,cy:20,r:15}),E('circle',{...s,cx:20,cy:20,r:9}),E('circle',{fill:c,stroke:'none',cx:20,cy:20,r:3}));
+  if (name==='head')   return svg(E('path',{...s,d:'M 20 9 C 11 9 7 15 7 22 C 7 30 13 34 20 34 C 27 34 33 30 33 22 C 33 15 29 9 20 9 Z'}),E('line',{...s,x1:20,y1:9,x2:20,y2:3}),E('line',{...s,x1:15,y1:10,x2:11,y2:5}),E('line',{...s,x1:25,y1:10,x2:29,y2:5}));
+  if (name==='home')   return svg(E('polyline',{...s,points:'4,21 20,6 36,21'}),E('polyline',{...s,points:'7,21 7,36 33,36 33,21'}),E('polyline',{...s,points:'15,36 15,26 25,26 25,36'}));
+  if (name==='wave')   return svg(E('path',{...s,d:'M 3 17 C 10 11 16 23 22 17 C 28 11 34 23 37 17'}),E('path',{...s,d:'M 3 25 C 10 19 16 31 22 25 C 28 19 34 31 37 25',strokeOpacity:0.45}));
+  if (name==='sun')    return svg(E('circle',{...s,cx:20,cy:20,r:7}),E('line',{...s,x1:20,y1:10,x2:20,y2:4}),E('line',{...s,x1:27.1,y1:12.9,x2:31.3,y2:8.7}),E('line',{...s,x1:30,y1:20,x2:36,y2:20}),E('line',{...s,x1:27.1,y1:27.1,x2:31.3,y2:31.3}),E('line',{...s,x1:20,y1:30,x2:20,y2:36}),E('line',{...s,x1:12.9,y1:27.1,x2:8.7,y2:31.3}),E('line',{...s,x1:10,y1:20,x2:4,y2:20}),E('line',{...s,x1:12.9,y1:12.9,x2:8.7,y2:8.7}));
+  if (name==='link')   return svg(E('circle',{...s,cx:14,cy:20,r:10}),E('circle',{...s,cx:26,cy:20,r:10}));
+  if (name==='gem')    return svg(E('polygon',{...s,points:'20,3 37,17 20,37 3,17'}),E('line',{...s,x1:3,y1:17,x2:37,y2:17}),E('line',{...s,x1:20,y1:3,x2:12,y2:17}),E('line',{...s,x1:20,y1:3,x2:28,y2:17}));
+  return svg();
+};
+
+class Component extends DCLogic {
+  _t    = 0;
+  _raf  = null;
+  _last = null;
+  _sc   = 1;
+  DUR   = 28;
+
+  componentDidMount() {
+    this._resize();
+    window.addEventListener('resize', this._resize);
+    const step = (ts) => {
+      if (this._raf === null) return;
+      const dt = this._last !== null ? Math.min((ts-this._last)/1000, 0.1) : 0;
+      this._last = ts;
+      this._t = (this._t + dt) % this.DUR;
+      this.forceUpdate();
+      this._raf = requestAnimationFrame(step);
+    };
+    this._raf = requestAnimationFrame(step);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._resize);
+    cancelAnimationFrame(this._raf); this._raf = null;
+  }
+  _resize = () => { this._sc = Math.max(window.innerWidth/1920, window.innerHeight/1080); };
+
+  _isRecording = false;
+  _recChunks   = [];
+  _recMR       = null;
+
+  _startRecording = async () => {
+    if (this._isRecording) return;
+    try {
+      const stream = await navigator.mediaDevices.getDisplayMedia({ video:{ frameRate:30, displaySurface:'browser' }, audio:false });
+      const mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9' : 'video/webm';
+      this._recMR = new MediaRecorder(stream, { mimeType, videoBitsPerSecond:6000000 });
+      this._recChunks = [];
+      this._recMR.ondataavailable = e => { if (e.data.size>0) this._recChunks.push(e.data); };
+      this._recMR.onstop = () => {
+        const blob = new Blob(this._recChunks, { type:'video/webm' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob); a.download = 'casafe-hero-16x9.webm';
+        document.body.appendChild(a); a.click();
+        setTimeout(()=>{ URL.revokeObjectURL(a.href); document.body.removeChild(a); }, 1000);
+        stream.getTracks().forEach(t=>t.stop());
+        this._isRecording = false;
+      };
+      this._t = 0; this._last = null; this._isRecording = true;
+      this._recMR.start(200);
+      setTimeout(()=>{ if (this._recMR && this._recMR.state==='recording') this._recMR.stop(); }, (this.DUR+1)*1000);
+    } catch(e) { console.warn('Gravação cancelada:', e.message); this._isRecording = false; }
+  };
+
+  _scenes(t) {
+    const E    = React.createElement;
+    const ease = p => p<0.5?2*p*p:-1+(4-2*p)*p;
+    const fi   = (s,e) => t<=s?0:t>=e?1:ease((t-s)/(e-s));
+    const fo   = (s,e) => 1-fi(s,e);
+    const fio  = (is,ie,os,oe) => Math.min(fi(is,ie),fo(os,oe));
+    const ty   = (s,e,d=50) => `translateY(${(1-fi(s,e))*d}px)`;
+    const ABS  = { position:'absolute', inset:0 };
+    const CTR  = { ...ABS, display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column' };
+
+    const rBoost = fi(13.2,16)*fo(18.5,20);
+    const rings = E('svg',{style:{...ABS,width:'100%',height:'100%',pointerEvents:'none'}},
+      E('g',{transform:'translate(960,540)'},
+        ...[260,440,620,820,1040,1300].map((r,i)=>{
+          const ph=t*(0.28+i*0.06)+i*1.1;
+          const sc=1+0.045*Math.sin(ph);
+          const op=(0.05+0.025*Math.sin(ph+1.3)+rBoost*0.14)*(i%2===0?1.2:0.75);
+          return E('circle',{key:i,cx:0,cy:0,r,fill:'none',stroke:i===3?_gold:_green,strokeWidth:i===3?1.1:0.7,opacity:op,transform:`scale(${sc})`});
+        })
+      )
+    );
+
+    const sc1=fio(0.3,1.8,3.5,4.5);
+    const s1=sc1>0&&E('div',{style:{...CTR,opacity:sc1,gap:36}},
+      E('div',{style:{fontFamily:_serif,fontStyle:'italic',fontSize:64,fontWeight:300,color:_muted,letterSpacing:'0.18em',textAlign:'center'}},'Você sente isso?'),
+      E('div',{style:{width:96,height:1,background:`linear-gradient(90deg,transparent,${_gold},transparent)`}}),
+      E('div',{style:{display:'flex',gap:56,alignItems:'center',marginTop:8}},
+        [['moon'],['pulse'],['bolt'],['target']].map(([n],i)=>E('div',{key:i,style:{opacity:0.65}},mkIcon(n,40,_muted)))
+      )
+    );
+
+    const sc2=fio(3.0,5.0,9.0,10.0);
+    const syms=[{icon:'moon',label:'Insônia crônica',start:3.0},{icon:'pulse',label:'Ansiedade',start:3.9},{icon:'bolt',label:'Cansaço sem causa',start:4.7},{icon:'head',label:'Dores de cabeça',start:5.5},{icon:'home',label:'Ambiente pesado',start:6.3},{icon:'target',label:'Falta de foco',start:7.1}];
+    const s2=sc2>0&&E('div',{style:{...CTR,opacity:sc2}},
+      E('div',{style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'28px 44px',padding:'0 160px'}},
+        syms.map((s,i)=>{const op=fi(s.start,s.start+0.9);return E('div',{key:i,style:{display:'flex',alignItems:'center',gap:24,background:'rgba(201,168,76,0.04)',border:'1px solid rgba(201,168,76,0.14)',borderRadius:3,padding:'24px 32px',opacity:op,transform:`translateY(${(1-op)*40}px)`}},mkIcon(s.icon,36,_muted),E('span',{style:{color:_cream,fontSize:26,fontWeight:300,fontFamily:_sans}},s.label));})
+      )
+    );
+
+    const sc3=fio(9.2,11.0,13.2,14.2);
+    const s3=sc3>0&&E('div',{style:{...CTR,opacity:sc3,textAlign:'center',gap:20,padding:'0 280px'}},
+      E('div',{style:{fontFamily:_serif,fontSize:66,fontWeight:300,color:_cream,lineHeight:1.35,opacity:fi(9.2,10.6),transform:ty(9.2,10.6,50)}},'O problema pode não ser você.'),
+      E('div',{style:{width:60,height:1,background:`linear-gradient(90deg,transparent,${_gold},transparent)`,opacity:fi(9.8,11.0)}}),
+      E('div',{style:{fontFamily:_serif,fontStyle:'italic',fontSize:86,fontWeight:600,color:_green,lineHeight:1.2,opacity:fi(10.3,11.7),transform:ty(10.3,11.7,50),textShadow:`0 0 80px ${_green}40`}},'É o seu espaço.')
+    );
+
+    const sc4=fio(13.2,15.5,18.5,19.5);
+    const s4=sc4>0&&E('div',{style:{...CTR,opacity:sc4}},
+      E('div',{style:{display:'flex',flexDirection:'column',alignItems:'center',gap:20,transform:`scale(${0.85+0.15*fi(13.2,15.5)})`}},
+        E('div',{style:{fontFamily:_serif,fontSize:120,fontWeight:600,letterSpacing:'0.38em',color:_cream,lineHeight:1,textShadow:`0 0 120px rgba(77,184,122,0.25),0 0 40px rgba(201,168,76,0.1)`}},'CA.SA.FE.'),
+        E('div',{style:{width:300,height:1,background:`linear-gradient(90deg,transparent,${_gold},transparent)`,margin:'6px 0'}}),
+        E('div',{style:{fontFamily:_sans,fontSize:21,fontWeight:300,color:_muted,letterSpacing:'0.36em',textTransform:'uppercase',opacity:fi(14.5,16.0),transform:ty(14.5,16.0,22)}},'Arquitetura Consciente & Geobiologia'),
+        E('div',{style:{fontFamily:_serif,fontStyle:'italic',fontSize:36,color:_gold,marginTop:24,opacity:fi(16.2,17.8),transform:ty(16.2,17.8,22)}},'"Seu ambiente cuida de você."')
+      )
+    );
+
+    const sc5=fio(18.5,20.0,24.5,25.5);
+    const bens=[{icon:'moon',label:'Sono restaurado',start:19.0},{icon:'wave',label:'Ansiedade reduzida',start:20.0},{icon:'sun',label:'Energia renovada',start:21.0},{icon:'link',label:'Harmonia familiar',start:22.0},{icon:'gem',label:'Foco e clareza',start:23.0}];
+    const s5=sc5>0&&E('div',{style:{...CTR,opacity:sc5,gap:0}},
+      E('div',{style:{fontFamily:_serif,fontStyle:'italic',fontSize:40,color:_muted,marginBottom:52,opacity:fi(18.5,20.0),letterSpacing:'0.05em'}},'O que o espaço certo faz por você:'),
+      E('div',{style:{display:'flex',flexDirection:'column',gap:28,width:860}},
+        bens.map((b,i)=>{const op=fi(b.start,b.start+0.7);return E('div',{key:i,style:{display:'flex',alignItems:'center',gap:32,borderBottom:'1px solid rgba(201,168,76,0.1)',paddingBottom:28,opacity:op,transform:`translateX(${(1-op)*-80}px)`}},mkIcon(b.icon,42,_green),E('span',{style:{fontSize:32,fontWeight:300,color:_cream,fontFamily:_sans}},b.label));})
+      )
+    );
+
+    // Persistent CTA overlay
+    const ctaOp = fi(24.0,26.0);
+    const cta = ctaOp>0 && E('div',{style:{
