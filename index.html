@@ -691,36 +691,6 @@
 <!-- ══════════════════════════════════
      NAV
 ══════════════════════════════════ -->
-<!-- ══════════════════════════════════
-     INTRO HERO (iframe)
-══════════════════════════════════ -->
-<section id="intro-section" style="position:relative;width:100%;height:100vh;overflow:hidden;background:#0e1f14;">
-  <iframe
-    src="intro.html"
-    id="intro-frame"
-    style="width:100%;height:100%;border:none;display:block;"
-    allowfullscreen
-    loading="eager"
-  ></iframe>
-  <!-- Scroll indicator -->
-  <div id="intro-scroll-hint" style="
-    position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-    display:flex;flex-direction:column;align-items:center;gap:8px;
-    color:rgba(255,255,255,0.75);font-family:'Barlow Condensed',sans-serif;
-    font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;
-    cursor:pointer;animation:bounce 2s infinite;z-index:10;
-  " onclick="document.getElementById('intro-section').nextElementSibling.scrollIntoView({behavior:'smooth'})">
-    <span>Conheça</span>
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-  </div>
-</section>
-<style>
-  @keyframes bounce {
-    0%,100%{transform:translateX(-50%) translateY(0)}
-    50%{transform:translateX(-50%) translateY(8px)}
-  }
-  #intro-section { scroll-snap-align: start; }
-</style>
 
 <nav>
   <div class="logo">Ca.Sa.<span>Fe</span></div>
